@@ -9,6 +9,7 @@ import "./shoe-orbit.css";
 import "./shoe-popup.css";
 import "./shop.css";
 import "./reviews.css";
+import "./footer-benefits.css";
 
 export const metadata: Metadata = {
   title: { default: "Nike", template: "%s | Nike" },

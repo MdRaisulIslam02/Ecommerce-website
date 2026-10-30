@@ -1,7 +1,11 @@
 import type { CSSProperties } from "react";
 
-type IconName = "search" | "user" | "bag" | "arrow" | "close" | "menu" | "plus" | "minus" | "heart" | "globe";
+type IconName = "search" | "user" | "bag" | "arrow" | "close" | "menu" | "plus" | "minus" | "heart" | "globe" | "truck" | "shield" | "returns" | "card";
 const paths: Record<IconName, string> = {
+  truck: "M3 17H2V4h12v13H8 M14 8h4l4 5v4h-3 M14 17h0 M8 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z M19 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z M17 9v4h5",
+  shield: "M12 2c3 3 6 4 8 4v6c0 5-4 8-8 10-4-2-8-5-8-10V6c2 0 5-1 8-4Z m-4 10 3 3 5-5",
+  returns: "M4 3v6h6 M4 9a9 9 0 1 1-1 7",
+  card: "M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z M2 10h20",
   search: "m21 21-4.5-4.5 M19 10.5a8.5 8.5 0 1 1-17 0 8.5 8.5 0 0 1 17 0Z",
   user: "M20 21v-2a7 7 0 0 0-14 0v2 M17 7a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z",
   bag: "M5 7h14l1 14H4L5 7Z M8 8V6a4 4 0 0 1 8 0v2",

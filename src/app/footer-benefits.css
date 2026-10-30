@@ -1,0 +1,15 @@
+.footer-benefits { background:#f4f4ef; padding:46px 4% 50px; border-top:1px solid #e5e6de; border-bottom:1px solid #e5e6de; color:#1b1c18; }
+.footer-benefits-heading { max-width:1620px; margin:0 auto 25px; display:flex; justify-content:space-between; align-items:flex-end; gap:25px; }
+.footer-benefits-heading>div>p { font-size:8px; letter-spacing:1.8px; color:#86897a; margin:0 0 12px; }
+.footer-benefits-heading h2 { font-size:clamp(23px,2.05vw,34px); font-weight:600; letter-spacing:-1px; line-height:1.2; margin:0; }
+.footer-benefits-heading>span { font-size:11px; color:#898c80; padding-bottom:3px; }
+.footer-benefits-grid { max-width:1620px; margin:0 auto; padding:0; list-style:none; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:15px; }
+.footer-benefits-grid li { display:flex; align-items:flex-start; gap:15px; min-width:0; padding:26px 22px; background:#fff; border:1px solid #e7e8e0; border-radius:5px; }
+.footer-benefit-icon { flex:0 0 43px; height:43px; border-radius:50%; background:#f0f1e9; color:#505a40; display:grid; place-items:center; }
+.footer-benefit-icon svg { width:23px; height:23px; stroke-width:1.6; }
+.footer-benefits-grid li>div { padding-top:2px; }
+.footer-benefits-grid h2 { font-size:13px; font-weight:600; line-height:1.4; margin:0 0 7px; letter-spacing:-.15px; }
+.footer-benefits-grid p { font-size:11px; color:#8a8c82; line-height:1.65; margin:0; max-width:210px; }
+@media(min-width:1600px) { .footer-benefits-grid { gap:20px; } .footer-benefits-grid li { padding:30px 25px; gap:18px; } .footer-benefits-grid h2 { font-size:15px; } .footer-benefits-grid p { font-size:12px; } .footer-benefit-icon { flex-basis:46px; height:46px; } }
+@media(max-width:1100px) { .footer-benefits-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; } }
+@media(max-width:550px) { .footer-benefits { padding:32px 22px 34px; } .footer-benefits-heading { margin-bottom:21px; } .footer-benefits-heading>span { display:none; } .footer-benefits-heading>div>p { font-size:7px; letter-spacing:1.5px; margin-bottom:10px; } .footer-benefits-heading h2 { font-size:25px; max-width:260px; letter-spacing:-.7px; } .footer-benefits-grid { gap:11px; } .footer-benefits-grid li { flex-direction:column; padding:19px 15px 18px; gap:12px; } .footer-benefit-icon { flex-basis:auto; width:37px; height:37px; } .footer-benefit-icon svg { width:21px; height:21px; } .footer-benefits-grid li>div { padding:0; } .footer-benefits-grid h2 { font-size:12px; margin-bottom:6px; } .footer-benefits-grid p { font-size:10px; line-height:1.65; } }
