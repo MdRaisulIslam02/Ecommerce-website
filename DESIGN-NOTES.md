@@ -118,3 +118,10 @@ Implementation: src/features/products/shoe-quick-view.tsx, src/features/products
 
 Phone swipe fix: ignore bubbled lostpointercapture from child shoe buttons when touch capture transfers to the orbit surface. Previously this ended the drag as soon as the surface captured the touch pointer. Verified the actual component handlers through a simulated touch capture-transfer sequence, continued 200px movement, release and accidental-click suppression. TypeScript passed. Physical phone testing was not available in this session.
 
+
+Shop redesign: added an independent responsive shop stylesheet and client collection component. Desktop has a sticky sidebar with category checkboxes, min/max price number inputs and range sliders, searchable brand choices and reset controls. Combined filters update the result count and removable chips; product search (including header q parameter), sorting and an empty-result reset are functional. Reused individual original garment images instead of the cropped rail sprite. Mobile uses two product columns and a native filter drawer with scroll lock, live results and Escape/Close. Verified combined footwear/price/brand filtering, price slider endpoints, brand search, ascending sorting, product search, header query, mobile filtering, close/focus flow and no horizontal page overflow at 390px. Fixed image containment so garments fit completely inside cards. TypeScript passed.
+Implementation: src/features/products/shop-collection.tsx, src/app/(store)/shop/page.tsx, src/app/shop.css, src/app/layout.tsx.
+
+
+Shop card purchase controls: each product card now has a separate size selector and Add to cart form outside its details link. Garment sizes XS–XL and footwear EU 40–46 are required before submission. Adds the specific product, color, size, price and image to the existing persistent browser cart; repeat additions increase quantity. Verified native required-size validation, clothing size M twice (quantity 2), mobile footwear EU 42, matching cart lines and subtotal $547, staying on /shop, success toast and no horizontal overflow. Removed only the two test lines after validation. TypeScript passed.
+

@@ -7,6 +7,7 @@ import "./collection.css";
 import "./look-slider.css";
 import "./shoe-orbit.css";
 import "./shoe-popup.css";
+import "./shop.css";
 
 export const metadata: Metadata = {
   title: { default: "Nike", template: "%s | Nike" },
@@ -23,3 +24,4 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     </html>
   );
 }
+
