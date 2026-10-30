@@ -1,0 +1,83 @@
+# Frontend design implementation
+
+Project: C:\ecommerce-desing
+
+The supplied screenshot guided the navigation, muted gradient hero, hanging fleece collection, styled looks, rotating footwear showcase, manifesto, full-width campaign, editorial gallery and footer. The original source assets were not supplied; this implementation uses generated imagery and sample product/editorial photography, so it is not a pixel-for-pixel copy.
+
+## Implemented
+- Responsive homepage, shared header and footer.
+- Garment quick-view dialog with size selection.
+- Look selector and complete-look add to bag.
+- Footwear selector, sizes and add to bag.
+- Campaign controls and horizontally scrolling editorial gallery.
+- Searchable sample product listing.
+- Browser-local bag with quantity controls, removal and persistence.
+- Keyboard labels, dialog focus management, reduced motion styles and skip link.
+
+## Backend status
+Laravel is not connected. Checkout, authentication, wishlist persistence and product detail pages remain placeholders. Product prices, stock and totals are sample frontend data. No orders or payments can be submitted.
+
+## Validation
+Production build, TypeScript check and browser checks of desktop/mobile layout, quick view, look changes, size selection, search and bag persistence.
+
+## Assets
+Built-in image_gen was used, not the CLI fallback.
+Final saved generated assets:
+- C:\ecommerce-desing\public\images\clothing-rail.png
+- C:\ecommerce-desing\public\images\lumina-campaign.png
+- C:\ecommerce-desing\public\images\streetwear-looks.png
+
+### Final generation prompts
+
+Clothing rail:
+Use case: product-mockup. Asset type: transparent wide ecommerce clothing rail photograph for a premium streetwear homepage. Make one ultra-wide horizontal chrome garment rail with 11 evenly spaced hanging oversized hooded sweatshirts viewed slightly from the side. Each hoodie hangs naturally from a thin metal hanger on the horizontal rail. Garment color sequence black, navy, heather gray, ivory cream, forest green, charcoal, black, heather gray, ivory, forest green, navy. Garments all full length visible, detailed heavy cotton fleece fabric and natural folds, slightly varied orientation. Isolated on genuine transparent background, soft realistic studio shadows directly on fabric only. Wide panoramic composition, 3:1 image. Rail runs straight from left edge to right edge across upper 15% of image, hoodies occupy middle 80%, garments don't touch each other. No people, no text, no tags, no logos, no UI, no borders. Photorealistic luxury fashion catalog quality.
+
+Lumina campaign:
+Use case: ads-marketing. Photorealistic premium sport fashion editorial banner, panoramic 3:1. Tight cinematic head and shoulders portrait of a young athletic Black man facing front, wearing sleek translucent glowing orange wraparound sport sunglasses, black high neck athletic shirt. Dramatic low key lighting, face in deep shadow, light gray concrete studio background, motion streaks sweeping from his glasses across left half of the composition in black and burnt orange. Subject fills middle and right area. Left lower area uncluttered dark for overlaid white website copy later. Experimental high fashion sportswear campaign, realistic skin, high contrast, no text, no lettering, no logo, no watermark.
+
+Streetwear looks:
+Photorealistic ecommerce fashion editorial, wide landscape 3:2 photograph. Five diverse young adult male streetwear models standing on seamless pure white studio background floor, full body head to toe in frame. All evenly spaced in one row. Center male in olive green oversized crewneck sweatshirt, brown baggy trousers, white sneakers. Left two wear a charcoal sweatshirt with blue jeans and a white t-shirt with sage cargo trousers. Right two wear a black tee with blue jeans, and a rust brown sweatshirt with charcoal trousers. Natural relaxed standing poses, front view, sophisticated streetwear styling, realistic skin, bright soft studio lighting, subtle shadows under sneakers, no text, no logos. People occupy full height of frame with modest margins.
+
+### Sample photography sources
+- jordan.webp: https://cdn.dummyjson.com/product-images/mens-shoes/nike-air-jordan-1-red-and-black/1.webp
+- black-sneaker.webp: https://cdn.dummyjson.com/product-images/mens-shoes/nike-baseball-cleats/1.webp
+- editorial-one.jpg: https://images.unsplash.com/photo-1483985988355-763728e1935b
+- editorial-two.jpg: https://images.unsplash.com/photo-1523398002811-999ca8dec234
+
+
+## Hero hover refinement
+- Independent products rotate from a narrow side angle to a full front view on mouse hover and keyboard focus.
+- The active product name and $199.00 appear at the bottom left.
+- A chrome SVG rail follows the full width of the hero, including both screen edges.
+- The hero uses 15 individual positions with blazer, gray, black, cream and green variants.
+- The remaining homepage sections retain their existing layout.
+
+Generated asset (built-in image_gen): C:\ecommerce-desing\public\images\hero-garments-front.png
+Final prompt:
+Use case: product-mockup. Create a transparent ecommerce garment sprite sheet, very wide landscape 3:1 composition. Exactly FIVE individual front-facing realistic garments, evenly spaced across five equal-width columns, all vertically aligned at shoulders and hems, completely separated with transparent gaps, no overlap. Column 1: dark midnight navy double-breasted tailored blazer with lapels, six black buttons, long sleeves. Column 2: light heather gray oversized pullover hoodie, long sleeves. Column 3: washed black oversized short-sleeve T-shirt, with natural folds. Column 4: warm ivory cream oversized pullover hoodie, long sleeves. Column 5: dark forest green oversized pullover hoodie, long sleeves. Every garment is perfectly FRONT FACING, sleeves hang straight downward close to body, entire garment fully visible. Isolated floating garment product photography, no people, no mannequins, no skin, no hangers, no rail, no labels or text, no logos, no backdrop. Consistent natural luxury studio lighting, realistic detailed fabric, transparent background. Leave transparent margins around each garment so each fits strictly inside its own equal-width fifth of the image. Garments occupy middle 90% of canvas height.
+
+
+
+## Current hero: original reference assets
+The hero now uses the six products and actual side/front product photographs from https://nike-makknzjs.myshopify.com/ rather than the generated sprite. The generated sprite is retained as an unused earlier asset.
+Local files: C:\ecommerce-desing\public\images\hero\
+- blazer-side.webp: https://nike-makknzjs.myshopify.com/cdn/shop/files/2610071515248388.webp?height=900
+- blazer-front.webp: https://nike-makknzjs.myshopify.com/cdn/shop/files/2610071514560224.webp?height=900
+- gray-hoodie-side.webp: https://nike-makknzjs.myshopify.com/cdn/shop/files/2610071514447647.webp?height=900
+- gray-hoodie-front.webp: https://nike-makknzjs.myshopify.com/cdn/shop/files/2610071514403809.webp?height=900
+- black-hoodie-side.webp: https://nike-makknzjs.myshopify.com/cdn/shop/files/2610071101516777.webp?height=900
+- black-hoodie-front.webp: https://nike-makknzjs.myshopify.com/cdn/shop/files/2610071101472773.webp?height=900
+- cream-sweatshirt-side.webp: https://nike-makknzjs.myshopify.com/cdn/shop/files/2610071517384792.webp?height=900
+- cream-sweatshirt-front.webp: https://nike-makknzjs.myshopify.com/cdn/shop/files/2610071517318112.webp?height=900
+- green-sweatshirt-side.webp: https://nike-makknzjs.myshopify.com/cdn/shop/files/2610071517049148.webp?height=900
+- green-sweatshirt-front.webp: https://nike-makknzjs.myshopify.com/cdn/shop/files/2610071516592552.webp?height=900
+- black-tshirt-side.webp: https://nike-makknzjs.myshopify.com/cdn/shop/files/2610071516549024.webp?height=900
+- black-tshirt-front.webp: https://nike-makknzjs.myshopify.com/cdn/shop/files/2610071515314737.webp?height=900
+
+The full-width chrome rail and responsive placement are implemented in code. Hover/focus cross-fades each side image to the corresponding front image; product clicks open its matching quick view. Original website products and images were inspected directly in the browser.
+
+
+Latest verification: TypeScript and browser hero checks passed. Production build verification is incomplete: Turbopack's Tailwind CSS worker exits before connecting during the build. The existing development server renders the revised hero correctly.
+
+
+Collection refinement: replaced the static rail image with ten independent original side/front product pairs on a fixed chrome rail. The active piece expands and reveals its full front view; neighboring pieces receive small damped spring impulses. Continuous low-amplitude, differently phased wind motion pivots each garment from its hook. Animation pauses offscreen and respects reduced-motion preferences. Mobile uses scrolling inside the section without page overflow. TypeScript and browser checks passed. Implementation: src/features/products/collection-rail.tsx and src/app/collection.css.

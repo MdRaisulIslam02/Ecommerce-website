@@ -1,0 +1,237 @@
+/* Independent garments keep the hover rotation separate from the full-width rail. */
+.interactive-hero {
+  height: clamp(460px, 38vw, 760px);
+  background:
+    radial-gradient(ellipse at 7% 100%, #d1dca5 0, transparent 64%),
+    radial-gradient(ellipse at 100% 0, #b6a6ca 0, transparent 65%),
+    linear-gradient(115deg, #e3dfcf, #e0d7d3 52%, #8da6b9);
+  isolation: isolate;
+}
+.interactive-hero > .collection-label {
+  padding-top: 5.65%;
+  font-size: clamp(10px, .98vw, 19px);
+  letter-spacing: .15em;
+  gap: 24px;
+}
+.interactive-hero > .collection-label > span { height: 21px; }
+.curved-rail-stage {
+  position: absolute;
+  inset: 28% 0 auto;
+  height: 13.9%;
+  perspective: 1400px;
+}
+.curved-rail {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.hero-piece {
+  --piece-height: clamp(150px, 10.2vw, 220px);
+  position: absolute;
+  left: var(--piece-x);
+  top: var(--piece-drop);
+  width: clamp(72px, 5.2vw, 110px);
+  height: calc(var(--piece-height) + 31px);
+  padding: 0;
+  transform: translateX(-50%);
+  z-index: 1;
+  overflow: visible;
+  outline-offset: 2px;
+  perspective: 700px;
+}
+.hero-piece.is-active { z-index: 5; }
+.hero-piece:focus-visible { outline: 1px dashed #4e5551; border-radius: 5px; }
+.hero-hanger {
+  position: absolute;
+  left: 50%;
+  top: -3px;
+  width: 1px;
+  height: 45px;
+  background: linear-gradient(90deg,#676b68,#e2e0d8);
+  transform: rotate(-7deg);
+  transform-origin: top;
+  pointer-events: none;
+}
+.hero-hanger::after {
+  content: "";
+  position: absolute;
+  top: 24px;
+  left: -15px;
+  width: 29px;
+  height: 13px;
+  border: 1px solid #7e7970;
+  border-bottom: 0;
+  border-radius: 60% 60% 0 0;
+}
+.hero-garment {
+  position: absolute;
+  top: 23px;
+  left: 50%;
+  width: clamp(112px, 7.65vw, 156px);
+  height: var(--piece-height);
+  transform: translateX(-50%);
+  transform-origin: 50% 8%;
+  pointer-events: none;
+}
+.hero-view {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(2px 4px 2px #0000000c);
+  transition: opacity .28s ease, transform .42s cubic-bezier(.2,.75,.25,1);
+  transform-origin: 50% 12%;
+}
+.hero-view-side { opacity: 1; transform: rotateY(0); }
+.hero-view-front { opacity: 0; transform: rotateY(-28deg) scale(.98); }
+.hero-piece.is-active .hero-view-side { opacity: 0; transform: rotateY(35deg); }
+.hero-piece.is-active .hero-view-front { opacity: 1; transform: rotateY(0) scale(1.04); }
+
+.hero-price-tag {
+  position: absolute;
+  z-index: 2;
+  top: 29px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(38px, 3.15vw, 61px);
+  height: clamp(27px, 2.05vw, 40px);
+  padding-top: 8px;
+  border-radius: 3px;
+  background: #fffef7;
+  color: #292a28;
+  font-size: clamp(10px, .88vw, 17px);
+  font-weight: 700;
+  letter-spacing: .3px;
+  box-shadow: 1px 3px 5px #00000025;
+  transform: translateX(-50%) rotate(var(--tag-angle));
+  transition: transform .35s;
+  pointer-events: none;
+}
+.hero-price-tag i {
+  position: absolute;
+  top: 5px;
+  left: calc(50% - 2px);
+  width: 4px;
+  height: 4px;
+  background: #b9b5a9;
+  border-radius: 50%;
+}
+.hero-price-tag::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% - 7px);
+  width: 1px;
+  height: 25px;
+  background: #a39d8e;
+  transform: rotate(-4deg);
+}
+.hero-piece.is-active .hero-price-tag { transform: translateX(-50%) translateY(3px) rotate(-5deg); }
+.interactive-hero .hero-bottom {
+  left: 2.85%;
+  right: 3.05%;
+  bottom: 7.4%;
+  min-height: 105px;
+}
+.hero-product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-height: 56px;
+  justify-content: flex-end;
+  font-size: clamp(14px, 1.13vw, 22px);
+  line-height: 1.35;
+}
+.hero-product-details strong { font-weight: 600; }
+.interactive-hero .hero-copy h2 {
+  font-size: clamp(16px, 1.26vw, 25px);
+  line-height: 1.25;
+  margin-bottom: 28px;
+}
+.interactive-hero .hero-copy .text-link {
+  font-size: clamp(12px, 1vw, 20px);
+  padding-bottom: 8px;
+  gap: 17px;
+}
+@media (max-width: 1100px) {
+  .interactive-hero > .collection-label { padding-top: 54px; gap: 15px; }
+  .curved-rail-stage { top: 29%; }
+  .hero-piece { --piece-height: 158px; width: 5.6%; }
+  .hero-garment {
+  position: absolute;
+  top: 23px;
+  left: 50%;
+  width: clamp(112px, 7.65vw, 156px);
+  height: var(--piece-height);
+  transform: translateX(-50%);
+  transform-origin: 50% 8%;
+  pointer-events: none;
+}
+.hero-view {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(2px 4px 2px #0000000c);
+  transition: opacity .28s ease, transform .42s cubic-bezier(.2,.75,.25,1);
+  transform-origin: 50% 12%;
+}
+.hero-view-side { opacity: 1; transform: rotateY(0); }
+.hero-view-front { opacity: 0; transform: rotateY(-28deg) scale(.98); }
+.hero-piece.is-active .hero-view-side { opacity: 0; transform: rotateY(35deg); }
+.hero-piece.is-active .hero-view-front { opacity: 1; transform: rotateY(0) scale(1.04); }
+
+.hero-price-tag { top: 25px; }
+  .interactive-hero .hero-bottom { left: 28px; right: 28px; bottom: 32px; }
+  .hero-product-details { font-size: 15px; }
+}
+@media (max-width: 600px) {
+  .interactive-hero { height: 500px; }
+  .interactive-hero > .collection-label { padding-top: 43px; font-size: 8px; gap: 11px; }
+  .interactive-hero > .collection-label > span { height: 12px; }
+  .curved-rail-stage { width: 180%; left: -40%; top: 27%; height: 13%; }
+  .hero-piece { --piece-height: 156px; width: 5.8%; }
+  .hero-garment {
+  position: absolute;
+  top: 23px;
+  left: 50%;
+  width: clamp(112px, 7.65vw, 156px);
+  height: var(--piece-height);
+  transform: translateX(-50%);
+  transform-origin: 50% 8%;
+  pointer-events: none;
+}
+.hero-view {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(2px 4px 2px #0000000c);
+  transition: opacity .28s ease, transform .42s cubic-bezier(.2,.75,.25,1);
+  transform-origin: 50% 12%;
+}
+.hero-view-side { opacity: 1; transform: rotateY(0); }
+.hero-view-front { opacity: 0; transform: rotateY(-28deg) scale(.98); }
+.hero-piece.is-active .hero-view-side { opacity: 0; transform: rotateY(35deg); }
+.hero-piece.is-active .hero-view-front { opacity: 1; transform: rotateY(0) scale(1.04); }
+
+.hero-price-tag { width: 34px; height: 25px; top: 24px; font-size: 9px; padding-top: 6px; }
+  .hero-price-tag i { width: 3px; height: 3px; }
+  .interactive-hero .hero-bottom { left: 22px; right: 22px; bottom: 28px; min-height: 105px; }
+  .interactive-hero .hero-copy h2 { font-size: 12px; margin-bottom: 20px; }
+  .interactive-hero .hero-copy .text-link { font-size: 10px; gap: 9px; }
+  .hero-product-details { font-size: 13px; min-height: 45px; max-width: 112px; gap: 4px; }
+  .interactive-hero .hover-hint { font-size: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-view, .hero-price-tag { transition: none; }
+}
