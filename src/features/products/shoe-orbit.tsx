@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { formatMoney } from "@/lib/currency";
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from "react";
 import { Icon } from "@/components/ui/icon";
 import { useCart } from "@/features/cart/cart-provider";
@@ -144,7 +145,7 @@ export function ShoeOrbit() {
     <div className="orbit-meta" onMouseEnter={() => setReading(true)} onMouseLeave={() => setReading(false)}
       onFocusCapture={() => setReading(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setReading(false); }}>
       <p className="orbit-counter">{String(active + 1).padStart(2, "0")} / 07</p>
-      <div aria-live={playing ? "off" : "polite"} aria-atomic="true"><h2 id="orbit-product-title">{shoe.name}</h2><p className="orbit-product-price">${shoe.price.toFixed(2)}</p></div>
+      <div aria-live={playing ? "off" : "polite"} aria-atomic="true"><h2 id="orbit-product-title">{shoe.name}</h2><p className="orbit-product-price">{formatMoney(shoe.price)}</p></div>
       <button className="orbit-detail-link" aria-haspopup="dialog" aria-controls="shoe-product-popup" onClick={() => { setPlaying(false); setQuickViewOpen(true); }}>View details <Icon name="arrow" size={23} /></button>
     </div>
     <div className={`orbit-shoes ${dragging ? "is-dragging" : ""}`} aria-label="Choose a shoe — drag to rotate"
@@ -185,4 +186,5 @@ export function ShoeOrbit() {
     <ShoeQuickView open={quickViewOpen} index={active} onChange={rotateTo} onClose={() => setQuickViewOpen(false)} />
   </section>;
 }
+
 

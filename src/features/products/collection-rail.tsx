@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { formatMoney } from "@/lib/currency";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { heroGarments } from "./hero-catalog";
@@ -72,13 +73,13 @@ export function CollectionRail({ onSelect }: { onSelect: (product: ProductSelect
           const product = heroGarments[productIndex];
           return <button type="button" key={index}
             className={`collection-piece ${activeIndex === index ? "is-active" : ""}`}
-            aria-label={`${product.name}, ${product.color}, $199.00. View product`}
+            aria-label={`${product.name}, ${product.color}, ${formatMoney(199)}. View product`}
             onMouseEnter={() => activate(index)} onFocus={() => activate(index)}
             onClick={() => onSelect({ name: product.name, color: product.color, image: product.front, imageIndex: 0, columns: 1 })}>
             <span className="collection-swing" ref={(node) => { swings.current[index] = node; }}>
               <Image className="collection-view collection-side" src={product.side} width={420} height={900} alt="" sizes="(max-width: 600px) 110px, 13vw" draggable={false} />
               <Image className="collection-view collection-front" src={product.front} width={600} height={900} alt="" sizes="(max-width: 600px) 240px, 25vw" draggable={false} />
-              <span className="collection-price-tag" aria-hidden="true"><i />$199</span>
+              <span className="collection-price-tag" aria-hidden="true"><i />{formatMoney(199, 0)}</span>
             </span>
           </button>;
         })}
@@ -90,3 +91,4 @@ export function CollectionRail({ onSelect }: { onSelect: (product: ProductSelect
     </div>
   </section>;
 }
+

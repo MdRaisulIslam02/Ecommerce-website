@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { formatMoney } from "@/lib/currency";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/ui/icon";
@@ -61,7 +62,7 @@ export function ShoeQuickView({ open, index, onClose, onChange }: ShoeQuickViewP
         </div>
       </div>
       <div className="shoe-popup-details">
-        <div aria-live="polite" aria-atomic="true"><h2 id="shoe-popup-title">{shoe.name}</h2><p className="shoe-popup-price">${shoe.price.toFixed(2)}</p></div>
+        <div aria-live="polite" aria-atomic="true"><h2 id="shoe-popup-title">{shoe.name}</h2><p className="shoe-popup-price">{formatMoney(shoe.price)}</p></div>
         <p className="shoe-popup-size-title">Shoe size</p>
         <div className="shoe-popup-sizes" aria-label="Popup EU shoe sizes">{orbitSizes.map((item) => <button aria-label={`EU ${item}`} aria-pressed={size === item} className={size === item ? "selected" : ""} key={item} onClick={() => setSize(item)}>{item}</button>)}</div>
         <button className="shoe-popup-add" disabled={size === null} onClick={() => { if (size !== null) addItems([{ id: `${shoe.id}-${size}`, name: shoe.name, price: shoe.price, image: shoe.image, size: String(size) }]); }}>{size === null ? "Select a size" : "Add to bag"}</button>
@@ -70,4 +71,5 @@ export function ShoeQuickView({ open, index, onClose, onChange }: ShoeQuickViewP
     </div>
   </dialog>;
 }
+
 

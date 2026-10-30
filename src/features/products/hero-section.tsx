@@ -2,6 +2,7 @@
 
 import { useState, type CSSProperties } from "react";
 import Image from "next/image";
+import { formatMoney } from "@/lib/currency";
 import { Icon } from "@/components/ui/icon";
 import { heroGarments, heroRailOrder } from "./hero-catalog";
 
@@ -46,19 +47,19 @@ export function HeroSection({ onSelect }: HeroSectionProps) {
 
           return <button key={index} type="button" style={style}
             className={`hero-piece ${active ? "is-active" : ""}`}
-            aria-label={`${product.name}, ${product.color}, $199.00. View product`}
+            aria-label={`${product.name}, ${product.color}, ${formatMoney(199)}. View product`}
             onMouseEnter={() => setActiveIndex(index)} onFocus={() => setActiveIndex(index)}
             onClick={() => onSelect({ name: product.name, color: product.color, image: product.front, imageIndex: 0, columns: 1 })}>
             <span className="hero-hanger" aria-hidden="true" />
             <span className="hero-garment" aria-hidden="true"><Image className="hero-view hero-view-side" src={product.side} width={400} height={700} alt="" loading="eager" sizes="(max-width: 600px) 100px, 160px" draggable={false} /><Image className="hero-view hero-view-front" src={product.front} width={450} height={700} alt="" loading="eager" sizes="(max-width: 600px) 110px, 180px" draggable={false} /></span>
-            <span className="hero-price-tag" aria-hidden="true"><i />$199</span>
+            <span className="hero-price-tag" aria-hidden="true"><i />{formatMoney(199, 0)}</span>
           </button>;
         })}
       </div>
 
       <div className="hero-bottom">
         <div className="hero-product-details" aria-live="polite" aria-atomic="true">
-          {activeProduct ? <><strong>{activeProduct.name}</strong><span>$199.00</span></> :
+          {activeProduct ? <><strong>{activeProduct.name}</strong><span>{formatMoney(199)}</span></> :
             <p className="hover-hint"><span />Hover a piece · click to look closer</p>}
         </div>
         <div className="hero-copy">
@@ -69,3 +70,4 @@ export function HeroSection({ onSelect }: HeroSectionProps) {
     </section>
   );
 }
+

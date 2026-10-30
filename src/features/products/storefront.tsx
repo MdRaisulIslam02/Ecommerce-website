@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { formatMoney } from "@/lib/currency";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/ui/icon";
@@ -74,10 +75,11 @@ export function Storefront() {
       <CustomerReviews />
 
       <dialog className="quick-view" ref={dialog} onClose={() => setSelected(null)} onClick={(event) => { if (event.target === event.currentTarget) dialog.current?.close(); }} aria-labelledby="quick-view-title">
-        {selected !== null && <div className="quick-view-content"><button className="icon-button quick-close" aria-label="Close quick view" onClick={() => dialog.current?.close()}><Icon name="close" /></button><div className="quick-image crop-product" style={{ backgroundImage: `url("${selected.image}")`, backgroundSize: selected.columns === 1 ? "auto 90%" : `${selected.columns * 100}% 100%`, backgroundPosition: selected.columns === 1 ? "center" : `${selected.imageIndex * 100 / (selected.columns - 1)}% center` }} /><div className="quick-details"><p className="eyebrow">Nike Sportswear</p><h2 id="quick-view-title">{selected.name}</h2><p className="muted">{selected.color} · Oversized fit</p><p className="quick-price">$199.00</p><p>Considered details. An easy silhouette. The layer you will reach for, again and again.</p><p className="size-label">Select size</p><div className="garment-sizes">{["XS", "S", "M", "L", "XL"].map((size) => <button key={size} onClick={() => setGarmentSize(size)} className={size === garmentSize ? "selected" : ""} aria-pressed={size === garmentSize}>{size}</button>)}</div><button className="button button-dark full-width" onClick={() => { addItems([{ id: `${selected.name}-${selected.color}-${garmentSize}`, name: `${selected.color} ${selected.name}`, price: 199, image: selected.image, size: garmentSize }]); dialog.current?.close(); }}>Add to bag <Icon name="plus" size={18} /></button></div></div>}
+        {selected !== null && <div className="quick-view-content"><button className="icon-button quick-close" aria-label="Close quick view" onClick={() => dialog.current?.close()}><Icon name="close" /></button><div className="quick-image crop-product" style={{ backgroundImage: `url("${selected.image}")`, backgroundSize: selected.columns === 1 ? "auto 90%" : `${selected.columns * 100}% 100%`, backgroundPosition: selected.columns === 1 ? "center" : `${selected.imageIndex * 100 / (selected.columns - 1)}% center` }} /><div className="quick-details"><p className="eyebrow">Nike Sportswear</p><h2 id="quick-view-title">{selected.name}</h2><p className="muted">{selected.color} · Oversized fit</p><p className="quick-price">{formatMoney(199)}</p><p>Considered details. An easy silhouette. The layer you will reach for, again and again.</p><p className="size-label">Select size</p><div className="garment-sizes">{["XS", "S", "M", "L", "XL"].map((size) => <button key={size} onClick={() => setGarmentSize(size)} className={size === garmentSize ? "selected" : ""} aria-pressed={size === garmentSize}>{size}</button>)}</div><button className="button button-dark full-width" onClick={() => { addItems([{ id: `${selected.name}-${selected.color}-${garmentSize}`, name: `${selected.color} ${selected.name}`, price: 199, image: selected.image, size: garmentSize }]); dialog.current?.close(); }}>Add to bag <Icon name="plus" size={18} /></button></div></div>}
       </dialog>
     </>
   );
 }
+
 
 

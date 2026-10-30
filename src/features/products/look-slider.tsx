@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import { formatMoney } from "@/lib/currency";
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from "react";
 import { Icon } from "@/components/ui/icon";
 import { useCart } from "@/features/cart/cart-provider";
 import { runwayLooks, type LookProduct } from "./look-catalog";
 
-const money = (value: number) => `$${value.toFixed(2)}`;
+const money = formatMoney;
 export function LookSlider() {
   const [active, setActive] = useState(2);
   const [detailView, setDetailView] = useState(false);
@@ -167,3 +168,4 @@ export function LookSlider() {
     </aside>
   </section>;
 }
+
