@@ -1,0 +1,87 @@
+.shoe-product-popup {
+  position: fixed; inset: 0; margin: 0; padding: 0; width: 100vw; height: 100dvh;
+  max-width: none; max-height: none; border: 0; background: #fff; color: #171717;
+  overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain;
+}
+.shoe-product-popup::backdrop { background: #fff; }
+.shoe-popup-close { position: fixed; top: 28px; right: 25px; display: flex; align-items: center; gap: 16px; z-index: 5; padding: 6px 0 6px 12px; background: #ffffffed; font-size: 20px; }
+.shoe-popup-close:hover { color: #777; }
+.shoe-popup-body { display: grid; grid-template-columns: 57% 43%; min-height: 100%; }
+.shoe-popup-gallery { min-width: 0; min-height: 100dvh; display: flex; flex-direction: column; padding: 90px 3.7% 49px 6.7%; }
+.shoe-popup-viewer { position: relative; flex: 1; min-height: 300px; display: flex; align-items: center; justify-content: center; }
+.shoe-popup-viewer img { position: absolute; width: 100%; height: 100%; object-fit: contain; user-select: none; }
+.shoe-popup-gallery-bottom { display: flex; align-items: center; justify-content: space-between; gap: 25px; padding-top: 12px; }
+.shoe-popup-thumbnails { position: relative; display: flex; gap: 12px; width: 61%; min-width: 0; overflow-x: auto; scrollbar-width: none; padding: 3px 1px; }
+.shoe-popup-thumbnails::-webkit-scrollbar { display: none; }
+.shoe-popup-thumbnails > button { width: 96px; height: 78px; flex: 0 0 96px; border: 1px solid #d6d6d6; border-radius: 16px; overflow: hidden; padding: 4px; background: #f7f7f7; }
+.shoe-popup-thumbnails > button.selected { border-color: #111; }
+.shoe-popup-thumbnails > button:hover { border-color: #555; }
+.shoe-popup-thumbnails img { width: 100%; height: 100%; object-fit: contain; transform: translateY(-8%); pointer-events: none; }
+.shoe-popup-navigation { display: flex; align-items: center; justify-content: flex-end; gap: clamp(15px,1.8vw,35px); flex-shrink: 0; }
+.shoe-popup-navigation button { width: clamp(45px,3.7vw,72px); height: clamp(45px,3.7vw,72px); border: 1px solid #d2d2d2; border-radius: 50%; display: grid; place-items: center; }
+.shoe-popup-navigation button:hover { background: #f4f4f4; border-color: #777; }
+.shoe-popup-navigation > span { font-size: 18px; letter-spacing: 3px; color: #777; white-space: nowrap; }
+.shoe-popup-details { padding: clamp(100px,23.5vh,210px) 7% 70px 4%; min-width: 0; }
+.shoe-popup-details h2 { font-family: "Arial Narrow",Arial,Helvetica,sans-serif; font-size: clamp(45px,4.3vw,84px); line-height: .98; font-weight: 800; letter-spacing: -1.5px; text-transform: uppercase; }
+.shoe-popup-price { font-size: clamp(23px,1.8vw,35px); font-weight: 700; line-height: 1.2; margin: 25px 0 34px; }
+.shoe-popup-size-title { text-transform: uppercase; font-size: clamp(11px,.9vw,17px); letter-spacing: 2px; color: #777; margin-bottom: 14px; }
+.shoe-popup-sizes { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; }
+.shoe-popup-sizes button { min-height: clamp(48px,3.7vw,72px); border: 1px solid #ccc; border-radius: 5px; background: #f8f8f8; font-size: clamp(16px,1.12vw,22px); font-weight: 600; }
+.shoe-popup-sizes button:hover { border-color: #111; }
+.shoe-popup-sizes button.selected { background: #111; border-color: #111; color: #fff; }
+.shoe-popup-add { width: 100%; height: clamp(60px,4.45vw,86px); border-radius: 60px; margin-top: 30px; background: #111; color: white; font-size: clamp(17px,1.28vw,25px); font-weight: 600; }
+.shoe-popup-add:disabled { opacity: 1; background: #a0a0a0; color: #fff; cursor: default; }
+.shoe-popup-add:not(:disabled):hover { background: #333; }
+.shoe-popup-full-details { display: inline-flex; align-items: center; gap: 14px; font-size: clamp(13px,1vw,20px); font-weight: 600; border-bottom: 1px solid #111; padding-bottom: 7px; margin-top: 67px; }
+.shoe-popup-full-details:hover { color: #777; }
+@media (max-width: 1200px) {
+  .shoe-popup-body { grid-template-columns: 55% 45%; }
+  .shoe-popup-gallery { padding-left: 6%; padding-right: 4%; }
+  .shoe-popup-details { padding-left: 5%; padding-right: 7%; padding-top: 22vh; }
+  .shoe-popup-gallery-bottom { gap: 18px; flex-wrap: wrap; }
+  .shoe-popup-thumbnails { width: 100%; }
+  .shoe-popup-navigation { margin-left: auto; }
+  .shoe-popup-thumbnails > button { width: 80px; flex-basis: 80px; height: 65px; border-radius: 12px; }
+  .shoe-popup-navigation > span { font-size: 13px; letter-spacing: 2px; }
+  .shoe-popup-close { font-size: 16px; top: 20px; right: 23px; }
+  .shoe-popup-close svg { width: 25px; }
+  .shoe-popup-full-details { margin-top: 40px; }
+}
+@media (max-width: 850px) {
+  .shoe-popup-body { grid-template-columns: 1fr; }
+  .shoe-popup-gallery { min-height: 0; height: 485px; padding: 65px 6% 10px; }
+  .shoe-popup-gallery-bottom { flex-wrap: nowrap; gap: 18px; }
+  .shoe-popup-thumbnails { width: 62%; }
+  .shoe-popup-navigation { gap: 13px; }
+  .shoe-popup-navigation button { width: 45px; height: 45px; }
+  .shoe-popup-navigation svg { width: 22px; }
+  .shoe-popup-details { padding: 25px 6% 50px; }
+  .shoe-popup-details h2 { font-size: 46px; }
+  .shoe-popup-price { font-size: 25px; margin: 18px 0 26px; }
+  .shoe-popup-size-title { font-size: 12px; }
+  .shoe-popup-sizes button { min-height: 50px; font-size: 16px; }
+  .shoe-popup-add { min-height: 58px; height: 58px; font-size: 18px; margin-top: 24px; }
+  .shoe-popup-full-details { margin-top: 30px; font-size: 14px; }
+}
+@media (max-width: 550px) {
+  .shoe-popup-close { top: 15px; right: 20px; gap: 10px; font-size: 14px; }
+  .shoe-popup-close svg { width: 24px; }
+  .shoe-popup-gallery { height: 415px; padding: 55px 20px 5px; }
+  .shoe-popup-viewer { min-height: 220px; }
+  .shoe-popup-gallery-bottom { gap: 12px; }
+  .shoe-popup-thumbnails { width: 52%; gap: 8px; }
+  .shoe-popup-thumbnails > button { width: 58px; flex-basis: 58px; height: 53px; border-radius: 10px; }
+  .shoe-popup-navigation { gap: 10px; }
+  .shoe-popup-navigation button { width: 36px; height: 36px; }
+  .shoe-popup-navigation > span { font-size: 10px; letter-spacing: 1px; }
+  .shoe-popup-navigation svg { width: 18px; }
+  .shoe-popup-details { padding: 20px 24px 40px; }
+  .shoe-popup-details h2 { font-size: 39px; letter-spacing: -1px; }
+  .shoe-popup-price { font-size: 23px; margin: 15px 0 23px; }
+  .shoe-popup-sizes { gap: 8px; }
+  .shoe-popup-sizes button { min-height: 45px; font-size: 15px; }
+  .shoe-popup-add { height: 54px; min-height: 54px; font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shoe-product-popup * { scroll-behavior: auto !important; }
+}

@@ -6,6 +6,7 @@ import "./hero.css";
 import "./collection.css";
 import "./look-slider.css";
 import "./shoe-orbit.css";
+import "./shoe-popup.css";
 
 export const metadata: Metadata = {
   title: { default: "Nike", template: "%s | Nike" },
