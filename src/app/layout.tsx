@@ -13,6 +13,7 @@ import "./footer-benefits.css";
 import "./account.css";
 import "./cart-drawer.css";
 import "./category-slider.css";
+import "./product-information.css";
 
 export const metadata: Metadata = {
   title: { default: "Nike", template: "%s | Nike" },
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     </html>
   );
 }
+
 
 
 
