@@ -10,6 +10,7 @@ import "./shoe-popup.css";
 import "./shop.css";
 import "./reviews.css";
 import "./footer-benefits.css";
+import "./account.css";
 
 export const metadata: Metadata = {
   title: { default: "Nike", template: "%s | Nike" },
@@ -26,5 +27,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     </html>
   );
 }
+
 
 

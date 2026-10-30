@@ -1,7 +1,3 @@
-import { PagePlaceholder } from "@/components/shared/page-placeholder";
-
+import { AccountDashboard } from "@/features/account/account-dashboard";
 export const metadata = { title: "My account" };
-
-export default function Page() {
-  return <PagePlaceholder title="My account" description="Login, registration, profile and order history will be added with Laravel authentication." />;
-}
+export default function Page() { return <AccountDashboard />; }

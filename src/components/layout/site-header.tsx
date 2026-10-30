@@ -11,7 +11,7 @@ export function SiteHeader() {
   const { count } = useCart();
   return (
     <header className="site-header">
-      <div className="utility-bar"><Link href="/shop">Find a Store</Link><span /> <Link href="/#footer">Help</Link><span /><Link href="/account">Join Us</Link><span /><Link href="/account">Sign In</Link></div>
+      <div className="utility-bar"><Link href="/shop">Find a Store</Link><span /> <Link href="/#footer">Help</Link><span /><Link href="/account">Join Us</Link><span /><Link href="/login">Sign In</Link></div>
       <div className="main-nav">
         <Link href="/" className="brand" aria-label="Nike home"><BrandMark /></Link>
         <nav className="desktop-nav" aria-label="Main navigation">
@@ -29,3 +29,4 @@ export function SiteHeader() {
     </header>
   );
 }
+
