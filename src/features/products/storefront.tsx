@@ -11,6 +11,7 @@ import { HeroSection } from "./hero-section";
 import { CollectionRail } from "./collection-rail";
 import { LookSlider } from "./look-slider";
 import { CustomerReviews } from "./customer-reviews";
+import { CategorySlider } from "./category-slider";
 
 export function Storefront() {
   const [selected, setSelected] = useState<{
@@ -46,6 +47,8 @@ export function Storefront() {
     <>
       <HeroSection onSelect={setSelected} />
 
+      <CategorySlider />
+
       <CollectionRail onSelect={setSelected} />
 
       <LookSlider />
@@ -80,6 +83,7 @@ export function Storefront() {
     </>
   );
 }
+
 
 
 
