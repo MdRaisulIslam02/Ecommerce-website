@@ -1,0 +1,263 @@
+.runway-slider {
+  display: grid; grid-template-columns: 70% 30%;
+  min-height: 560px; height: clamp(580px, 39vw, 790px);
+  border-top: 1px solid #e9e9e9; border-bottom: 1px solid #ddd;
+  background: #fff; overflow: hidden;
+}
+.runway-gallery { min-width: 0; display: flex; flex-direction: column; padding-top: clamp(35px,3.2vw,65px); }
+.runway-heading { padding: 0 6%; }
+.runway-heading h2 { font-size: clamp(40px,3.72vw,76px); font-weight: 700; letter-spacing: -.035em; line-height: 1.1; }
+.runway-heading p { font-size: clamp(12px,.95vw,19px); color: #5d5d5d; margin-top: 19px; line-height: 1.5; }
+.runway-stage { flex: 1; position: relative; min-height: 300px; margin-top: 18px; overflow: hidden; touch-action: pan-y; user-select: none; cursor: grab; }
+.runway-stage:active { cursor: grabbing; }
+.runway-stage:focus-visible { outline: 1px dashed #aaa; outline-offset: -5px; }
+.runway-model {
+  position: absolute; width: 28%; max-width: 350px; height: 85%;
+  bottom: 13%; left: calc(50% + var(--model-offset));
+  transform: translateX(-50%) scale(var(--model-scale));
+  transform-origin: 50% 96%; filter: blur(var(--model-blur));
+  transition: left .7s cubic-bezier(.22,.7,.23,1), transform .7s cubic-bezier(.22,.7,.23,1), filter .65s, opacity .55s;
+}
+.runway-model[aria-hidden="true"] { pointer-events: none; }
+.runway-model-image { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; pointer-events: none; }
+.runway-model-shadow { position: absolute; bottom: -1%; left: 12%; width: 76%; height: 9px; background: #00000035; filter: blur(7px); border-radius: 50%; transform: scaleX(1.3); pointer-events: none; }
+.runway-model-hit { position: absolute; inset: 0; width: 100%; padding: 0; cursor: pointer; }
+.runway-view-circle {
+  position: absolute; top: 18%; left: 50%; transform: translateX(-50%) scale(.92);
+  width: clamp(80px,6.7vw,132px); height: clamp(80px,6.7vw,132px);
+  border-radius: 50%; border: 1px solid #0002;
+  background: #ffffff54; backdrop-filter: blur(9px); box-shadow: inset 1px 1px 0 #ffffffb0;
+  display: grid; place-items: center; text-transform: uppercase; font-size: clamp(10px,.8vw,16px); letter-spacing: 4px;
+  opacity: 0; transition: opacity .25s, transform .35s;
+}
+.runway-model.is-current:hover .runway-view-circle, .runway-model-hit:focus-visible .runway-view-circle { opacity: 1; transform: translateX(-50%) scale(1); }
+.runway-model-hit:focus-visible { outline: 1px dashed #999; }
+.runway-pins { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .2s; }
+.runway-model.is-current:hover .runway-pins, .runway-model.is-current:focus-within .runway-pins { opacity: 1; }
+.runway-pin { pointer-events: auto; position: absolute; width: 24px; height: 24px; border: 1px solid #fff; box-shadow: 0 0 0 4px #ffffff40; background: #ffffffc9; border-radius: 50%; display: grid; place-items: center; z-index: 3; }
+.runway-pin:hover { background: #111; color: white; }
+.runway-pin-0 { left: 62%; top: 40%; }
+.runway-pin-1 { left: 49%; top: 88%; }
+.runway-pin-2 { left: 42%; top: 59%; }
+.runway-controls { display: flex; align-items: center; gap: 30px; padding: 22px 5.7% 44px; min-height: 110px; }
+.runway-arrow { width: 40px; height: 40px; flex-shrink: 0; display: grid; place-items: center; }
+.runway-arrow:hover { color: #777; }
+.runway-tabs { display: flex; gap: 9px; width: 63%; min-width: 0; margin-right: auto; }
+.runway-tabs > button { min-width: 0; flex: 1; border-top: 3px solid #dedede; padding: 13px 0 3px; display: flex; align-items: center; gap: 12px; text-align: left; white-space: nowrap; font-size: clamp(9px,.75vw,14px); letter-spacing: 1.7px; }
+.runway-tabs > button.is-current { flex-grow: 4.3; border-color: #111; }
+.runway-tabs > button b { font-weight: 400; letter-spacing: 1.4px; overflow: hidden; text-overflow: ellipsis; }
+.runway-tabs > button:hover { border-color: #777; }
+.runway-play { width: 32px; height: 40px; flex-shrink: 0; display: grid; place-items: center; }
+.play-symbol { width: 0; height: 0; border-left: 11px solid #111; border-top: 7px solid transparent; border-bottom: 7px solid transparent; }
+.pause-symbol { width: 10px; height: 14px; border-left: 3px solid #111; border-right: 3px solid #111; }
+.runway-panel { min-width: 0; display: flex; flex-direction: column; border-left: 1px solid #ccc; height: 100%; overflow: hidden; }
+.runway-panel-heading { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: clamp(32px,3.2vw,65px) 8.4% 22px; }
+.runway-panel-heading h3 { font-size: clamp(19px,1.5vw,30px); font-weight: 600; }
+.runway-panel-heading > span { font-size: clamp(9px,.76vw,14px); text-transform: uppercase; letter-spacing: 2px; white-space: nowrap; color: #5e5e5e; }
+.runway-product-list { position: relative; min-height: 0; flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 0 8.4%; scrollbar-width: thin; scrollbar-color: #999 transparent; }
+.runway-product { padding: 25px 0; border-bottom: 1px solid #ccc; }
+.runway-product:first-child { padding-top: 0; }
+.runway-product:last-child { border-bottom: 0; }
+.runway-product-row { display: flex; align-items: center; gap: 25px; min-width: 0; position: relative; }
+.runway-product-image { position: relative; width: clamp(85px,7.3vw,145px); height: clamp(105px,9.1vw,180px); background: #f5f5f5; padding: 0; flex-shrink: 0; }
+.runway-product-image img { width: 100%; height: 100%; object-fit: contain; }
+.runway-piece-number { position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; border-radius: 50%; background: #fff; display: grid; place-items: center; font-size: 12px; font-weight: 600; }
+.runway-new { position: absolute; top: 7px; left: 6px; font-size: 9px; text-transform: uppercase; letter-spacing: 1px; color: #fff; background: #111; padding: 5px 8px; }
+.runway-product-info { flex: 1; min-width: 0; }
+.runway-product-info small { text-transform: uppercase; font-size: clamp(9px,.82vw,16px); letter-spacing: 1.7px; color: #777; }
+.runway-product-info h4 { font-size: clamp(13px,1vw,20px); font-weight: 400; margin: 10px 0; line-height: 1.35; }
+.runway-product-info p { font-size: clamp(12px,.95vw,19px); }
+.runway-product-plus { width: 35px; height: 35px; flex-shrink: 0; display: grid; place-items: center; align-self: flex-end; margin-bottom: 17px; }
+.runway-product.is-expanded { border-bottom-color: #555; }
+.runway-size-panel { padding: 20px 0 5px; }
+.runway-size-panel > p { color: #666; font-size: 11px; margin-bottom: 12px; }
+.runway-size-panel > div { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 15px; }
+.runway-size-panel > div > button { min-width: 39px; height: 35px; padding: 0 8px; border: 1px solid #ddd; font-size: 12px; }
+.runway-size-panel > div > button.selected { background: #111; color: #fff; border-color: #111; }
+.runway-size-panel > .button { font-size: 12px; }
+.runway-bundle { border-top: 1px solid #ccc; padding: 29px 8.4% 44px; }
+.runway-bundle-summary { display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; margin-bottom: 27px; }
+.runway-bundle-summary p { font-size: clamp(13px,1vw,20px); margin-bottom: 8px; }
+.runway-bundle-summary span { font-size: clamp(10px,.86vw,16px); color: #666; }
+.runway-bundle-prices { display: flex; gap: 13px; align-items: baseline; white-space: nowrap; }
+.runway-bundle-prices del { font-size: clamp(10px,.8vw,16px); color: #666; }
+.runway-bundle-prices strong { font-size: clamp(16px,1.17vw,24px); font-weight: 600; }
+.runway-bundle-button { display: flex; align-items: center; justify-content: center; gap: 27px; width: 100%; height: clamp(57px,4.5vw,87px); background: #000; color: #fff; font-size: clamp(13px,1.05vw,20px); transition: background .2s; }
+.runway-bundle-button:hover { background: #303030; }
+@media (max-width: 1200px) {
+  .runway-slider { grid-template-columns: 67% 33%; height: 620px; }
+  .runway-heading h2 { font-size: 45px; }
+  .runway-heading p { font-size: 12px; max-width: 350px; }
+  .runway-controls { gap: 17px; padding-bottom: 27px; }
+  .runway-tabs { width: 66%; gap: 6px; }
+  .runway-tabs > button { gap: 7px; letter-spacing: .5px; }
+  .runway-tabs > button.is-current { flex-grow: 3.2; }
+  .runway-tabs > button b { font-size: 8px; letter-spacing: .5px; }
+  .runway-product-row { gap: 15px; }
+  .runway-product-image { width: 78px; height: 105px; }
+  .runway-product-plus { width: 22px; }
+  .runway-product-plus svg { width: 19px; }
+  .runway-bundle-summary { flex-wrap: wrap; gap: 14px; }
+  .runway-bundle-prices { margin-left: auto; }
+  .runway-product-info h4 { font-size: 12px; }
+  .runway-bundle { padding-bottom: 28px; }
+}
+@media (max-width: 850px) {
+  .runway-slider { grid-template-columns: 1fr; height: auto; }
+  .runway-gallery { height: 590px; padding-top: 35px; }
+  .runway-heading { padding: 0 6%; }
+  .runway-heading h2 { font-size: 44px; }
+  .runway-stage { margin-top: 20px; }
+  .runway-model { width: 30%; }
+  .runway-controls { min-height: 88px; padding-top: 15px; padding-bottom: 25px; }
+  .runway-tabs { width: 64%; }
+  .runway-panel { border-left: 0; border-top: 1px solid #ddd; height: 500px; }
+  .runway-panel-heading { padding: 25px 6% 20px; }
+  .runway-panel-heading h3 { font-size: 22px; }
+  .runway-panel-heading > span { font-size: 10px; }
+  .runway-product-list { padding: 0 6%; }
+  .runway-product-row { gap: 22px; }
+  .runway-product-image { width: 92px; height: 110px; }
+  .runway-product-info h4 { font-size: 15px; }
+  .runway-product-info p { font-size: 13px; }
+  .runway-product-info small { font-size: 10px; }
+  .runway-product-plus { margin-left: auto; width: 36px; }
+  .runway-bundle { padding: 23px 6% 25px; }
+  .runway-bundle-summary { flex-wrap: nowrap; margin-bottom: 20px; }
+  .runway-bundle-summary p { font-size: 14px; }
+  .runway-bundle-summary span { font-size: 11px; }
+  .runway-bundle-prices strong { font-size: 19px; }
+  .runway-bundle-prices del { font-size: 11px; }
+  .runway-bundle-button { height: 56px; font-size: 14px; }
+}
+@media (max-width: 550px) {
+  .runway-gallery { height: 505px; padding-top: 33px; }
+  .runway-heading { padding: 0 24px; }
+  .runway-heading h2 { font-size: 36px; letter-spacing: -1.5px; }
+  .runway-heading p { font-size: 10px; margin-top: 12px; max-width: 270px; }
+  .runway-stage { min-height: 265px; margin-top: 10px; }
+  .runway-model { width: 42%; height: 92%; bottom: 3%; }
+  .runway-controls { padding: 10px 18px 22px; gap: 10px; min-height: 79px; }
+  .runway-arrow { width: 26px; }
+  .runway-arrow svg { width: 26px; }
+  .runway-tabs { flex: 1; gap: 5px; width: auto; }
+  .runway-tabs > button { font-size: 8px; letter-spacing: .4px; border-top-width: 2px; padding-top: 10px; }
+  .runway-tabs > button.is-current { flex-grow: 1.5; }
+  .runway-tabs > button b { display: none; }
+  .runway-play { width: 19px; }
+  .play-symbol { border-left-width: 8px; border-top-width: 5px; border-bottom-width: 5px; }
+  .runway-view-circle { width: 77px; height: 77px; font-size: 9px; letter-spacing: 2px; }
+  .runway-pin { width: 20px; height: 20px; }
+  .runway-pins { opacity: 1; }
+  .runway-panel { height: 490px; }
+  .runway-panel-heading { padding: 24px 24px 18px; }
+  .runway-panel-heading h3 { font-size: 21px; }
+  .runway-product-list { padding: 0 24px; }
+  .runway-product { padding: 20px 0; }
+  .runway-product-image { width: 85px; height: 106px; }
+  .runway-product-row { gap: 17px; }
+  .runway-product-info h4 { margin: 8px 0; font-size: 14px; }
+  .runway-piece-number { width: 22px; height: 22px; top: 5px; right: 5px; font-size: 10px; }
+  .runway-new { font-size: 7px; padding: 4px 5px; left: 4px; top: 4px; }
+  .runway-bundle { padding: 21px 24px 24px; }
+  .runway-bundle-summary { gap: 7px; }
+  .runway-bundle-summary p { font-size: 12px; margin-bottom: 6px; }
+  .runway-bundle-summary span { font-size: 9px; }
+  .runway-bundle-prices { gap: 8px; }
+  .runway-bundle-prices strong { font-size: 16px; }
+  .runway-bundle-prices del { font-size: 9px; }
+  .runway-bundle-button { height: 54px; font-size: 13px; gap: 20px; }
+  .runway-bundle-button svg { width: 27px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .runway-model, .runway-view-circle, .runway-pins { transition: none; }
+}
+
+/* Clicking View opens an inline look detail; only this mode exposes product points. */
+.runway-gallery { position: relative; }
+.runway-slider.is-detail .runway-gallery { padding-top: 0; }
+.runway-detail-heading {
+  position: absolute; top: clamp(30px, 2.5vw, 50px); left: 6.2%; right: 3.6%;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 20px; z-index: 25; pointer-events: none;
+}
+.runway-detail-heading p {
+  text-transform: uppercase; font-size: clamp(10px, .78vw, 15px);
+  letter-spacing: 3px; color: #777; margin: 0 0 10px;
+}
+.runway-detail-heading h2 {
+  font-size: clamp(19px, 1.45vw, 28px); font-weight: 600; letter-spacing: -.6px; line-height: 1.2;
+}
+.runway-detail-close {
+  width: clamp(48px, 3.8vw, 74px); height: clamp(48px, 3.8vw, 74px);
+  border: 1px solid #ccc; border-radius: 50%; display: grid; place-items: center;
+  background: #fff; pointer-events: auto; transition: background .2s;
+}
+.runway-detail-close:hover { background: #f3f3f1; }
+.runway-slider.is-detail .runway-stage { margin-top: 0; cursor: default; }
+.runway-slider.is-detail .runway-model:not(.is-current) { opacity: 0 !important; pointer-events: none; visibility: hidden; }
+.runway-slider.is-detail .runway-model.is-current {
+  left: 50%; width: 45%; max-width: 480px; height: 74%; bottom: 9%;
+  transform: translateX(-50%); filter: none; opacity: 1;
+}
+.runway-slider.is-detail .runway-pins { opacity: 1; pointer-events: none; }
+.runway-slider.is-detail .runway-pin {
+  width: clamp(30px, 1.95vw, 38px); height: clamp(30px, 1.95vw, 38px);
+  transform: translate(-50%, -50%); border: 0; box-shadow: none;
+  background: #f2f1e9e8; color: #111; font-size: clamp(12px, .82vw, 16px);
+  font-weight: 600; transition: color .2s, background .2s, box-shadow .2s;
+}
+.runway-slider.is-detail .runway-pin-0 { left: 50%; top: 29%; }
+.runway-slider.is-detail .runway-pin-1 { left: 49%; top: 58%; }
+.runway-slider.is-detail .runway-pin-2 { left: 47%; top: 88%; }
+.runway-slider.is-detail .runway-pin::before {
+  content: ""; position: absolute; inset: -15px; border: 1px solid #ffffff35;
+  border-radius: 50%; background: #ffffff06; opacity: 0; pointer-events: none;
+  transition: opacity .25s;
+}
+.runway-slider.is-detail .runway-pin:hover::before,
+.runway-slider.is-detail .runway-pin:focus-visible::before,
+.runway-slider.is-detail .runway-pin.is-selected::before { opacity: 1; }
+.runway-slider.is-detail .runway-pin.is-selected {
+  background: #111; color: white; box-shadow: 0 0 0 8px #ffffff30;
+}
+.runway-pin-number { position: relative; z-index: 1; }
+.runway-pin-label {
+  position: absolute; top: 50%; left: calc(100% + 10px); transform: translateY(-50%) translateX(-4px);
+  display: block; padding: 10px 17px; border: 1px solid #e9e9e5; border-radius: 40px;
+  background: #ffffffed; color: #111; font-size: clamp(11px,.82vw,16px);
+  font-weight: 400; white-space: nowrap; opacity: 0; pointer-events: none;
+  transition: opacity .2s, transform .2s;
+}
+.runway-pin:hover .runway-pin-label, .runway-pin:focus-visible .runway-pin-label,
+.runway-pin.is-selected .runway-pin-label { opacity: 1; transform: translateY(-50%) translateX(0); }
+.runway-detail-hint {
+  position: absolute; left: 10%; right: 10%; bottom: 3.5%;
+  text-align: center; text-transform: uppercase; font-size: clamp(10px,.82vw,16px);
+  letter-spacing: 3px; color: #777; pointer-events: none;
+}
+.runway-product.is-linked { border-bottom: 1px solid #111; }
+.runway-product.is-linked .runway-piece-number { background: #111; color: #fff; }
+@media (max-width: 850px) {
+  .runway-slider.is-detail .runway-gallery { height: 620px; }
+  .runway-detail-heading { top: 30px; left: 6%; right: 6%; }
+  .runway-detail-heading h2 { font-size: 24px; }
+  .runway-slider.is-detail .runway-model.is-current { width: 60%; max-width: 380px; height: 73%; bottom: 10%; }
+  .runway-detail-hint { bottom: 25px; font-size: 11px; }
+}
+@media (max-width: 550px) {
+  .runway-slider.is-detail .runway-gallery { height: 580px; }
+  .runway-detail-heading { top: 27px; left: 24px; right: 24px; }
+  .runway-detail-heading p { font-size: 9px; letter-spacing: 2px; margin-bottom: 9px; }
+  .runway-detail-heading h2 { font-size: 21px; }
+  .runway-detail-close { width: 45px; height: 45px; }
+  .runway-detail-close svg { width: 22px; height: 22px; }
+  .runway-slider.is-detail .runway-model.is-current { width: 75%; height: 74%; bottom: 10%; }
+  .runway-slider.is-detail .runway-pin { width: 30px; height: 30px; font-size: 12px; }
+  .runway-pin-label { padding: 8px 12px; font-size: 10px; left: calc(100% + 7px); }
+  .runway-detail-hint { font-size: 9px; letter-spacing: 2px; bottom: 23px; left: 20px; right: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .runway-detail-close, .runway-pin, .runway-pin::before, .runway-pin-label { transition: none; }
+}
+

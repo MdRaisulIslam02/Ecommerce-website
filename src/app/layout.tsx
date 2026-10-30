@@ -4,6 +4,7 @@ import "./globals.css";
 import "./storefront.css";
 import "./hero.css";
 import "./collection.css";
+import "./look-slider.css";
 
 export const metadata: Metadata = {
   title: { default: "Nike", template: "%s | Nike" },

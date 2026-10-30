@@ -81,3 +81,18 @@ Latest verification: TypeScript and browser hero checks passed. Production build
 
 
 Collection refinement: replaced the static rail image with ten independent original side/front product pairs on a fixed chrome rail. The active piece expands and reveals its full front view; neighboring pieces receive small damped spring impulses. Continuous low-amplitude, differently phased wind motion pivots each garment from its hook. Animation pauses offscreen and respects reduced-motion preferences. Mobile uses scrolling inside the section without page overflow. TypeScript and browser checks passed. Implementation: src/features/products/collection-rail.tsx and src/app/collection.css.
+
+Try the Look slider refinement: six original model cutouts, looping previous/next navigation, numbered look tabs, mouse/touch swipe, keyboard arrows/Home/End, play/pause, center View overlay and product pins. Adjacent models use smaller scale and blur. Product list and prices change with the active look; size selection and individual add-to-bag are supported. Full-look purchase applies the advertised 10% to all three browser-local bag lines. Verified total: $492.30. Test items were removed after validation. Mobile page width verified without overflow. Existing production-build worker limitation remains; TypeScript and browser checks passed.
+Implementation: src/features/products/look-slider.tsx, src/features/products/look-catalog.ts, src/app/look-slider.css.
+Original reference asset sources (saved under C:\ecommerce-desing\public\images\looks):
+model-1.webp: https://nike-makknzjs.myshopify.com/cdn/shop/files/1.webp?v=1792848434&width=900
+model-2.webp: https://nike-makknzjs.myshopify.com/cdn/shop/files/5.webp?v=1792848434&width=900
+model-3.webp: https://nike-makknzjs.myshopify.com/cdn/shop/files/4.webp?v=1792848434&width=900
+model-4.webp: https://nike-makknzjs.myshopify.com/cdn/shop/files/6.webp?v=1792848434&width=900
+model-5.webp: https://nike-makknzjs.myshopify.com/cdn/shop/files/3.webp?v=1792848434&width=900
+model-6.webp: https://nike-makknzjs.myshopify.com/cdn/shop/files/2.webp?v=1792848434&width=900
+tatum.png: https://nike-makknzjs.myshopify.com/cdn/shop/files/1.png?width=600
+jordan-12.png: https://nike-makknzjs.myshopify.com/cdn/shop/files/2.png?width=600
+luka.png: https://nike-makknzjs.myshopify.com/cdn/shop/files/4.png?width=600
+
+Look detail interaction refinement: carousel mode shows only VIEW on hover/focus. Clicking VIEW opens an inline enlarged look with a look number/title, close control and three numbered product points. Selecting a point highlights its matching product and scrolls only the product list to reveal it; it does not open size choices. Re-selecting a point reveals the same product again. The plus button controls size choices. Close/Escape restores the carousel and focus to the active model. Desktop, mobile, all three mappings, panel visibility, no mobile page overflow, and TypeScript checks passed.
