@@ -1,0 +1,105 @@
+.shoe-orbit-section {
+  position: relative; height: clamp(550px, 37vw, 760px); min-height: 550px;
+  background: #fff; overflow: hidden; isolation: isolate;
+}
+.orbit-meta { position: absolute; top: 12.3%; left: 4.8%; z-index: 120; width: 25%; pointer-events: auto; }
+.orbit-counter { color: #666; font-size: clamp(10px,.85vw,16px); letter-spacing: 2px; margin-bottom: 19px; }
+.orbit-meta h2 { font-family: "Arial Narrow", Arial, Helvetica, sans-serif; font-size: clamp(46px,5.05vw,100px); font-weight: 800; letter-spacing: -.035em; text-transform: uppercase; line-height: .96; max-width: 380px; }
+.orbit-product-price { font-size: clamp(18px,1.55vw,30px); font-weight: 700; margin: 22px 0 28px; }
+.orbit-detail-link { display: inline-flex; align-items: center; gap: 13px; padding-bottom: 7px; border-bottom: 1px solid #111; font-size: clamp(12px,.99vw,19px); font-weight: 600; }
+.orbit-detail-link:hover { color: #777; border-color: #777; }
+.orbit-shoes { position: absolute; inset: 0; perspective: 1800px; }
+.orbit-shoe { position: absolute; width: clamp(500px,38vw,790px); aspect-ratio: 1; padding: 0; border: 0; background: transparent; will-change: transform,left,top; user-select: none; }
+.orbit-shoe img { width: 100%; height: 100%; object-fit: contain; transform: translateY(-18%); pointer-events: none; }
+.orbit-shoe:focus-visible { outline: 1px dashed #aaa; outline-offset: -90px; border-radius: 50%; }
+.orbit-guide { position: absolute; border: 1px solid #efefef; border-radius: 50%; transform: rotate(-18deg); pointer-events: none; }
+.orbit-guide-one { width: 66%; height: 117%; left: 45%; top: 16%; }
+.orbit-guide-two { width: 57%; height: 105%; left: 55%; top: 51%; border-style: dashed; }
+.orbit-wheel-wrap { position: absolute; width: 25.3%; left: 37.5%; bottom: 1.8%; z-index: 125; }
+.orbit-wheel { position: relative; height: 41px; border: 5px solid #f4f4f4; box-shadow: 0 0 0 1px #cecece,inset 0 1px 3px #0008; border-radius: 30px; background: linear-gradient(#393939,#d1d1d1 35%,#f4f4f4 48%,#a9a9a9 65%,#333); }
+.orbit-wheel-ridges { display: block; position: absolute; inset: 0; border-radius: 30px; background-image: repeating-linear-gradient(90deg,transparent 0px,transparent 15px,#0008 16px,#fff8 18px,transparent 20px,transparent 34px); }
+.orbit-wheel-gloss { position: absolute; inset: 0; border-radius: 30px; background: linear-gradient(#000a,transparent 27%,#fff9 46%,transparent 65%,#0009); pointer-events: none; }
+.orbit-wheel-notch { position: absolute; width: 6px; height: 6px; border-radius: 50%; left: calc(50% - 3px); top: -23px; background: #ef5d36; }
+.orbit-wheel input { position: absolute; inset: -8px 0; width: 100%; height: calc(100% + 16px); opacity: 0; cursor: ew-resize; margin: 0; touch-action: pan-y; }
+.orbit-wheel:focus-within { outline: 2px solid #333; outline-offset: 6px; }
+.orbit-wheel-caption { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 17px; color: #8a8a8a; font-size: clamp(8px,.72vw,14px); text-transform: uppercase; letter-spacing: 2px; white-space: nowrap; }
+.orbit-autoplay { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 0 0; width: 100%; font-size: 9px; letter-spacing: 1px; color: #999; }
+.orbit-autoplay .play-symbol { border-left-width: 7px; border-top-width: 4px; border-bottom-width: 4px; }
+.orbit-autoplay .pause-symbol { width: 7px; height: 9px; border-width: 2px; }
+.orbit-autoplay:hover { color: #111; }
+.orbit-purchase { position: absolute; z-index: 125; width: 28.5%; right: 4.7%; bottom: 12.8%; }
+.orbit-sizes { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+.orbit-sizes button { min-width: 0; height: clamp(43px,3.85vw,76px); border: 1px solid #d3d3d3; border-radius: 5px; background: #ffffffec; font-size: clamp(15px,1.3vw,25px); font-weight: 600; transition: background .2s,border-color .2s; }
+.orbit-sizes button:hover { border-color: #111; }
+.orbit-sizes button.selected { background: #111; color: #fff; border-color: #111; }
+.orbit-add { display: flex; align-items: center; justify-content: space-between; gap: 14px; width: 100%; margin-top: 18px; padding: 8px 0; border-bottom: 1px solid #222; font-size: 13px; background: #ffffffd9; }
+.orbit-product-layout { display: grid; grid-template-columns: 1.25fr 1fr; align-items: center; gap: 8%; margin-top: 25px; }
+.orbit-product-photo { background: #f8f8f6; aspect-ratio: 1; overflow: hidden; }
+.orbit-product-photo img { width: 100%; height: 100%; object-fit: contain; transform: translateY(-10%); }
+.orbit-product-description h1 { font-size: clamp(36px,4vw,60px); line-height: 1; letter-spacing: -2px; font-weight: 700; margin: 18px 0; }
+.orbit-product-page-price { font-size: 24px; font-weight: 600; margin: 25px 0; }
+.orbit-product-description > p:not(.eyebrow):not(.orbit-product-page-price):not(.muted) { color: #777; font-size: 13px; line-height: 1.8; margin-bottom: 28px; }
+.orbit-product-description h2 { font-size: 13px; font-weight: 500; margin-bottom: 15px; }
+.orbit-product-description .orbit-sizes { margin-bottom: 25px; }
+.orbit-product-description .orbit-sizes button { height: 48px; font-size: 14px; }
+@media (max-width: 1100px) {
+  .shoe-orbit-section { height: 600px; }
+  .orbit-meta { top: 11%; width: 25%; }
+  .orbit-meta h2 { font-size: 54px; }
+  .orbit-shoe { width: 54vw; min-width: 470px; }
+  .orbit-product-price { margin: 18px 0 22px; }
+  .orbit-wheel-wrap { left: 30%; width: 30%; bottom: 6%; }
+  .orbit-wheel { height: 30px; border-width: 4px; }
+  .orbit-purchase { width: 32%; right: 5%; bottom: 12%; }
+  .orbit-sizes { gap: 7px; }
+  .orbit-sizes button { height: 46px; font-size: 16px; }
+}
+@media (max-width: 850px) {
+  .shoe-orbit-section { height: 620px; }
+  .orbit-meta { left: 5%; top: 7%; width: 32%; }
+  .orbit-meta h2 { font-size: 45px; max-width: 230px; }
+  .orbit-counter { font-size: 9px; margin-bottom: 15px; }
+  .orbit-product-price { font-size: 18px; }
+  .orbit-detail-link { font-size: 11px; }
+  .orbit-shoe { width: 66vw; min-width: 460px; }
+  .orbit-wheel-wrap { left: 7%; width: 36%; bottom: 8%; }
+  .orbit-purchase { width: 43%; right: 6%; bottom: 12%; }
+  .orbit-guide-one { width: 90%; left: 36%; }
+  .orbit-guide-two { left: 48%; width: 90%; }
+  .orbit-product-layout { grid-template-columns: 1fr; gap: 35px; }
+  .orbit-product-description { padding-bottom: 20px; }
+}
+@media (max-width: 550px) {
+  .shoe-orbit-section { height: 685px; min-height: 685px; }
+  .orbit-meta { top: 31px; left: 25px; width: 60%; }
+  .orbit-meta h2 { font-size: 39px; max-width: 240px; letter-spacing: -1px; }
+  .orbit-counter { font-size: 8px; margin-bottom: 12px; }
+  .orbit-product-price { font-size: 16px; margin: 14px 0 16px; }
+  .orbit-detail-link { font-size: 10px; gap: 10px; padding-bottom: 5px; }
+  .orbit-detail-link svg { width: 17px; }
+  .orbit-shoes { top: 145px; height: 385px; }
+  .orbit-shoe { width: 100vw; min-width: 0; }
+  .orbit-guide-one { top: 12%; height: 110%; left: 20%; width: 110%; }
+  .orbit-guide-two { top: 48%; height: 110%; left: 35%; width: 120%; }
+  .orbit-wheel-wrap { left: 25px; width: 32%; bottom: 44px; }
+  .orbit-wheel { height: 22px; border-width: 3px; }
+  .orbit-wheel-notch { width: 4px; height: 4px; top: -17px; left: calc(50% - 2px); }
+  .orbit-wheel-caption { margin-top: 12px; font-size: 7px; letter-spacing: .5px; gap: 3px; }
+  .orbit-autoplay { font-size: 7px; letter-spacing: .2px; padding-top: 10px; gap: 6px; }
+  .orbit-autoplay .pause-symbol { height: 7px; }
+  .orbit-purchase { right: 24px; width: 48%; bottom: 53px; }
+  .orbit-sizes { gap: 6px; }
+  .orbit-sizes button { height: 38px; font-size: 12px; border-radius: 3px; }
+  .orbit-add { font-size: 10px; margin-top: 10px; padding: 5px 0; }
+  .orbit-add svg { width: 15px; }
+  .orbit-product-page .text-link { font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .orbit-shoe { will-change: auto; }
+  .orbit-sizes button { transition: none; }
+}
+
+.orbit-shoes { cursor: grab; user-select: none; touch-action: pan-y; }
+.orbit-shoes .orbit-shoe { cursor: grab; }
+.orbit-shoes.is-dragging, .orbit-shoes.is-dragging .orbit-shoe { cursor: grabbing; }
+

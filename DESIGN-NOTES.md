@@ -96,3 +96,18 @@ jordan-12.png: https://nike-makknzjs.myshopify.com/cdn/shop/files/2.png?width=60
 luka.png: https://nike-makknzjs.myshopify.com/cdn/shop/files/4.png?width=600
 
 Look detail interaction refinement: carousel mode shows only VIEW on hover/focus. Clicking VIEW opens an inline enlarged look with a look number/title, close control and three numbered product points. Selecting a point highlights its matching product and scrolls only the product list to reveal it; it does not open size choices. Re-selecting a point reveals the same product again. The plus button controls size choices. Close/Escape restores the carousel and focus to the active model. Desktop, mobile, all three mappings, panel visibility, no mobile page overflow, and TypeScript checks passed.
+
+
+Shoe orbit refinement: seven original reference shoe images on a closed interpolated orbit with perspective scaling, continuous curved transitions and automatic looping. The foreground shoe's counter, name, price and View details URL update together. A native keyboard-accessible range input drives the chrome drag wheel, including wrapping arrow keys. Manual selection and size choice pause rotation; play/pause is available. Rotation pauses offscreen, while reading the information panel, when the document is hidden and for reduced motion. Matching details pages and EU-size bag controls were added for the seven orbit entries. Verified auto advance, 7-to-1 wrap, actual wheel drag, matching details page, size-specific bag contents and mobile page width. Temporary test bag item was removed. TypeScript/browser validation passed; the previously documented production-build worker limitation remains.
+Implementation: src/features/products/shoe-orbit.tsx, shoe-catalog.ts, shoe-details.tsx, src/app/shoe-orbit.css.
+Source images saved in C:\ecommerce-desing\public\images\orbit:
+shoe-1.png: https://nike-makknzjs.myshopify.com/cdn/shop/files/1_a7f51336-93eb-4078-b6c2-e14b721eaad0.png?v=1792493930&width=1200
+shoe-2.png: https://nike-makknzjs.myshopify.com/cdn/shop/files/3_601e6b64-4e5b-4031-98cc-f63701e92f66.png?v=1792493930&width=1200
+shoe-3.png: https://nike-makknzjs.myshopify.com/cdn/shop/files/2_a571db77-d4b0-4689-8bd8-434c8e97bc65.png?v=1792493930&width=1200
+shoe-4.png: https://nike-makknzjs.myshopify.com/cdn/shop/files/8_63fc2d79-acc2-4d8d-98c0-416f1c055cff.png?v=1792493930&width=1200
+shoe-5.png: https://nike-makknzjs.myshopify.com/cdn/shop/files/4_7cbe61bc-b2b9-4f84-a58f-b9704d1996da.png?v=1792493930&width=1200
+shoe-6.png: https://nike-makknzjs.myshopify.com/cdn/shop/files/7_5273163c-5745-4e20-b9ad-09e0bbaa9ecd.png?v=1792493930&width=1200
+shoe-7.png: https://nike-makknzjs.myshopify.com/cdn/shop/files/9_427d191d-5859-4a5e-9cfc-f4283fa83ea3.png?v=1792493930&width=1200
+
+
+Direct shoe dragging: added horizontal pointer dragging over the product area with pointer capture, live orbit movement and nearest-product snapping on release. Dragging pauses automatic rotation, prevents accidental click selection, and keeps vertical touch scrolling available. Verified actual mouse drags left (06 to 07) and right (07 to 06), released drag state, continued wheel navigation and TypeScript check.

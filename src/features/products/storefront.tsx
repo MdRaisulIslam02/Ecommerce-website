@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/ui/icon";
 import { useCart } from "@/features/cart/cart-provider";
-import { shoes } from "./catalog";
+import { ShoeOrbit } from "./shoe-orbit";
 import { HeroSection } from "./hero-section";
 import { CollectionRail } from "./collection-rail";
 import { LookSlider } from "./look-slider";
@@ -15,13 +15,10 @@ export function Storefront() {
     name: string; color: string; image: string; imageIndex: number; columns: number;
   } | null>(null);
   const [garmentSize, setGarmentSize] = useState("M");
-  const [shoeIndex, setShoeIndex] = useState(0);
-  const [shoeSize, setShoeSize] = useState<number | null>(null);
   const [campaign, setCampaign] = useState(0);
   const dialog = useRef<HTMLDialogElement>(null);
   const gallery = useRef<HTMLDivElement>(null);
   const { addItems } = useCart();
-  const shoe = shoes[shoeIndex];
   useEffect(() => { if (selected !== null && !dialog.current?.open) dialog.current?.showModal(); }, [selected]);
   return (
     <>
@@ -31,14 +28,7 @@ export function Storefront() {
 
       <LookSlider />
 
-      <section className="shoe-section" aria-labelledby="shoe-title">
-        <div className="shoe-info" aria-live="polite"><p className="eyebrow">{String(shoeIndex + 1).padStart(2, "0")} / 02</p><h2 id="shoe-title">{shoe.name}</h2><p className="shoe-price">${shoe.price.toFixed(2)}</p><Link href={`/products/${shoe.slug}`} className="text-link">View details <Icon name="arrow" size={18} /></Link></div>
-        <div className="shoe-orbit"><div className="orbit-line" /><Image src={shoes[1 - shoeIndex].image} width={350} height={350} alt="" className="shoe-small shoe-small-left" /><Image key={shoe.image} src={shoe.image} width={700} height={700} alt={shoe.name} sizes="(max-width: 700px) 85vw, 55vw" className="shoe-main" /><Image src={shoes[1 - shoeIndex].image} width={250} height={250} alt="" className="shoe-small shoe-small-right" /></div>
-        <div className="shoe-interactions">
-          <div className="orbit-control"><div className="orbit-track">{shoes.map((item, index) => <button key={item.slug} onClick={() => { setShoeIndex(index); setShoeSize(null); }} aria-label={`Show ${item.name}`} aria-pressed={shoeIndex === index} className={shoeIndex === index ? "active" : ""} />)}</div><p><span>01</span>Explore the rotation<span>02</span></p></div>
-          <div className="size-selector"><p className="size-label">Select size <span>EU</span></p><div>{[40, 41, 42, 43, 44, 45, 46].map((size) => <button key={size} onClick={() => setShoeSize(size)} aria-pressed={shoeSize === size} className={shoeSize === size ? "selected" : ""}>{size}</button>)}</div><button className="shoe-add" disabled={!shoeSize} onClick={() => { if (shoeSize) addItems([{ id: `${shoe.slug}-${shoeSize}`, name: shoe.name, price: shoe.price, image: shoe.image, size: String(shoeSize) }]); }}>{shoeSize ? "Add to bag" : "Choose your size"} <Icon name="arrow" size={17} /></button></div>
-        </div>
-      </section>
+      <ShoeOrbit />
 
       <section className="manifesto"><p className="eyebrow">Considered in every detail.</p><h2>OBSESSED.</h2><p>We make things that work better and last longer. Our products solve real<br className="desktop-break" /> problems with clean design and honest materials.</p></section>
 
