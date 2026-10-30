@@ -235,3 +235,7 @@
 @media (prefers-reduced-motion: reduce) {
   .hero-view, .hero-price-tag { transition: none; }
 }
+
+.interactive-hero > .hero-main-title { position:relative; z-index:2; margin:0; padding:clamp(40px,5.4vw,90px) 20px 0; text-align:center; font-size:clamp(24px,2.8vw,49px); font-weight:600; line-height:1.15; letter-spacing:-1.5px; color:#171917; white-space:nowrap; }
+@media(max-width:600px) { .interactive-hero > .hero-main-title { padding-top:40px; font-size:clamp(20px,5.5vw,30px); letter-spacing:-.7px; } }
+

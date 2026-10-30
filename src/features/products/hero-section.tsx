@@ -16,8 +16,7 @@ export function HeroSection({ onSelect }: HeroSectionProps) {
 
   return (
     <section className="hero-section interactive-hero" aria-labelledby="hero-title">
-      <h1 id="hero-title" className="sr-only">Premium streetwear. Discover the new collection.</h1>
-      <p className="collection-label"><strong>New Collection</strong><span />Premium Streetwear</p>
+      <h1 id="hero-title" className="hero-main-title">Made for your everyday.</h1>
 
       <div className="curved-rail-stage" onMouseLeave={() => setActiveIndex(null)}
         onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setActiveIndex(null); }}>
@@ -70,4 +69,5 @@ export function HeroSection({ onSelect }: HeroSectionProps) {
     </section>
   );
 }
+
 
