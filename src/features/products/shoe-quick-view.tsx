@@ -14,7 +14,7 @@ export function ShoeQuickView({ open, index, onClose, onChange }: ShoeQuickViewP
   const thumbnails = useRef<HTMLDivElement>(null);
   const thumbnailButtons = useRef<(HTMLButtonElement | null)[]>([]);
   const [size, setSize] = useState<number | null>(null);
-  const { addItems } = useCart();
+  const { addItems, notice } = useCart();
   const shoe = orbitShoes[index];
   const change = (next: number) => onChange((next + orbitShoes.length) % orbitShoes.length);
 
@@ -47,6 +47,7 @@ export function ShoeQuickView({ open, index, onClose, onChange }: ShoeQuickViewP
       }
     }}>
     <button className="shoe-popup-close" aria-label="Close product popup" onClick={() => dialog.current?.close()}><span>Close</span><Icon name="close" size={29} /></button>
+    {notice && <p className="shoe-popup-notice" role="status">{notice}</p>}
     <div className="shoe-popup-body">
       <div className="shoe-popup-gallery">
         <div className="shoe-popup-viewer"><Image key={shoe.image} src={shoe.image} width={1200} height={1200} alt={`${shoe.name}, ${shoe.color}`} sizes="(max-width: 850px) 90vw, 52vw" loading="eager" draggable={false} /></div>
@@ -69,3 +70,4 @@ export function ShoeQuickView({ open, index, onClose, onChange }: ShoeQuickViewP
     </div>
   </dialog>;
 }
+

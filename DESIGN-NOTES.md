@@ -111,3 +111,10 @@ shoe-7.png: https://nike-makknzjs.myshopify.com/cdn/shop/files/9_427d191d-5859-4
 
 
 Direct shoe dragging: added horizontal pointer dragging over the product area with pointer capture, live orbit movement and nearest-product snapping on release. Dragging pauses automatic rotation, prevents accidental click selection, and keeps vertical touch scrolling available. Verified actual mouse drags left (06 to 07) and right (07 to 06), released drag state, continued wheel navigation and TypeScript check.
+
+Shoe product popup: clicking an orbit shoe or View details opens a fullscreen native dialog matching the supplied reference. Includes large product image, scrolling thumbnail gallery, looping previous/next controls and keyboard arrows, synced name/price/details URL, EU 40–46 size selection, disabled add button until a size is selected, and an in-dialog bag confirmation. Close/Escape restores the underlying carousel; body scrolling is locked only while open. Pointer dragging retains rotation and suppresses accidental popup clicks. Verified desktop and 390px mobile layout, size reset on product change, gallery wrap, selected-size bag contents, Escape/Close, product click, drag from 05 to 06 without popup, and full-details navigation. Test bag item removed. TypeScript check passed. Existing production build worker limitation remains unchanged.
+Implementation: src/features/products/shoe-quick-view.tsx, src/features/products/shoe-orbit.tsx, src/app/shoe-popup.css, src/app/layout.tsx.
+
+
+Phone swipe fix: ignore bubbled lostpointercapture from child shoe buttons when touch capture transfers to the orbit surface. Previously this ended the drag as soon as the surface captured the touch pointer. Verified the actual component handlers through a simulated touch capture-transfer sequence, continued 200px movement, release and accidental-click suppression. TypeScript passed. Physical phone testing was not available in this session.
+

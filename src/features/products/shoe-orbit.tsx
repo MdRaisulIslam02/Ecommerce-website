@@ -149,7 +149,11 @@ export function ShoeOrbit() {
     </div>
     <div className={`orbit-shoes ${dragging ? "is-dragging" : ""}`} aria-label="Choose a shoe — drag to rotate"
       onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={finishDrag}
-      onPointerCancel={finishDrag} onLostPointerCapture={finishDrag}
+      onPointerCancel={finishDrag} onLostPointerCapture={(event) => {
+        // Touch starts with implicit capture on the shoe button. Its capture loss
+        // bubbles when the drag surface takes over; only finish if the surface loses it.
+        if (event.target === event.currentTarget) finishDrag(event);
+      }}
       onDragStart={(event) => event.preventDefault()}
       onClickCapture={(event) => { if (performance.now() < suppressClickUntil.current) { event.preventDefault(); event.stopPropagation(); suppressClickUntil.current = 0; } }}>
       <span className="orbit-guide orbit-guide-one" /><span className="orbit-guide orbit-guide-two" />
@@ -181,3 +185,4 @@ export function ShoeOrbit() {
     <ShoeQuickView open={quickViewOpen} index={active} onChange={rotateTo} onClose={() => setQuickViewOpen(false)} />
   </section>;
 }
+

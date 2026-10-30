@@ -16,6 +16,26 @@ export function Storefront() {
   } | null>(null);
   const [garmentSize, setGarmentSize] = useState("M");
   const [campaign, setCampaign] = useState(0);
+  const [campaignPlaying, setCampaignPlaying] = useState(true);
+  const [campaignVisible, setCampaignVisible] = useState(false);
+  const [campaignFocused, setCampaignFocused] = useState(false);
+  const campaignSection = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const motion = matchMedia("(prefers-reduced-motion: reduce)");
+    const updateMotion = () => setCampaignPlaying(!motion.matches);
+    updateMotion();
+    motion.addEventListener("change", updateMotion);
+    const observer = new IntersectionObserver(([entry]) => setCampaignVisible(entry.isIntersecting), { threshold: .2 });
+    if (campaignSection.current) observer.observe(campaignSection.current);
+    return () => { observer.disconnect(); motion.removeEventListener("change", updateMotion); };
+  }, []);
+  useEffect(() => {
+    if (!campaignPlaying || !campaignVisible || campaignFocused) return;
+    const timer = setInterval(() => {
+      if (document.visibilityState === "visible") setCampaign((current) => (current + 1) % 2);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [campaign, campaignPlaying, campaignVisible, campaignFocused]);
   const dialog = useRef<HTMLDialogElement>(null);
   const gallery = useRef<HTMLDivElement>(null);
   const { addItems } = useCart();
@@ -32,10 +52,11 @@ export function Storefront() {
 
       <section className="manifesto"><p className="eyebrow">Considered in every detail.</p><h2>OBSESSED.</h2><p>We make things that work better and last longer. Our products solve real<br className="desktop-break" /> problems with clean design and honest materials.</p></section>
 
-      <section className={`campaign-section campaign-${campaign}`} aria-label="Lumina eyewear campaign">
+      <section ref={campaignSection} id="lumina-slider" className={`campaign-section campaign-${campaign}`} aria-label="Lumina eyewear campaign" aria-roledescription="carousel"
+        onFocusCapture={() => setCampaignFocused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setCampaignFocused(false); }}>
         <Image src="/images/lumina-campaign.png" fill sizes="100vw" alt="Athlete wearing luminous orange performance sunglasses with streaks of light" className="campaign-image" />
-        <div className="campaign-copy" aria-live="polite"><p className="eyebrow">{campaign === 0 ? "A new perspective" : "Built for your next move"}</p><h2>{campaign === 0 ? "Lumina Slider" : "Chase the Light"}</h2><p>{campaign === 0 ? "A soft, radiant light that illuminates the soul." : "Move freely. See possibility in every direction."}</p><Link href="/shop" className="campaign-link">Shop Now <Icon name="arrow" size={17} /></Link></div>
-        <div className="campaign-controls"><div>{[0, 1].map((index) => <button key={index} onClick={() => setCampaign(index)} className={campaign === index ? "active" : ""} aria-label={`Campaign slide ${index + 1}`} aria-pressed={campaign === index} />)}</div><span>0{campaign + 1} / 02</span></div>
+        <div className="campaign-copy" aria-live={campaignPlaying && !campaignFocused ? "off" : "polite"}><p className="eyebrow">{campaign === 0 ? "A new perspective" : "Built for your next move"}</p><h2>{campaign === 0 ? "Lumina Slider" : "Chase the Light"}</h2><p>{campaign === 0 ? "A soft, radiant light that illuminates the soul." : "Move freely. See possibility in every direction."}</p><Link href="/shop" className="campaign-link">Shop Now <Icon name="arrow" size={17} /></Link></div>
+        <div className="campaign-controls"><div>{[0, 1].map((index) => <button key={index} onClick={() => setCampaign(index)} className={campaign === index ? "active" : ""} aria-label={`Campaign slide ${index + 1}`} aria-pressed={campaign === index} />)}</div><button className="campaign-autoplay" onClick={() => setCampaignPlaying(!campaignPlaying)} aria-label={campaignPlaying ? "Pause Lumina slideshow" : "Play Lumina slideshow"}>{campaignPlaying ? "Pause" : "Play"}</button><span>0{campaign + 1} / 02</span></div>
       </section>
 
       <section id="runway" className="editorial-section">
@@ -55,3 +76,4 @@ export function Storefront() {
     </>
   );
 }
+
