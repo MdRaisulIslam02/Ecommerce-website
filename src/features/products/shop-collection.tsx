@@ -14,6 +14,7 @@ const products = [
 ];
 const brands = [...new Set(products.map((item) => item.brand))];
 const priceLimit = 250;
+const categoryNames: Record<string, string> = { hoodie: "Hoodies", hoodies: "Hoodies", sweatshirt: "Sweatshirts", sweatshirts: "Sweatshirts", "t-shirt": "T-shirts", "t-shirts": "T-shirts", blazer: "Blazers", jackets: "Jackets", footwear: "Sneakers", jordan: "Jordan", black: "The black edit", green: "The green edit", nike: "Nike favourites" };
 export function ShopCollection({ initialSearch }: { initialSearch: string }) {
   const [search, setSearch] = useState(initialSearch);
   const [selectedCategories, setCategories] = useState<string[]>([]);
@@ -25,6 +26,8 @@ export function ShopCollection({ initialSearch }: { initialSearch: string }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const drawer = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
+  const searchLabel = search.trim();
+  const breadcrumbName = selectedCategories.length ? selectedCategories.join(" + ") : categoryNames[searchLabel.toLowerCase()] || (searchLabel ? `Search: ${searchLabel}` : "");
   const filterCount = selectedCategories.length + selectedBrands.length + Number(minPrice !== 0 || maxPrice !== priceLimit);
   const filtered = products.filter((item) => (!selectedCategories.length || selectedCategories.includes(item.category)) && (!selectedBrands.length || selectedBrands.includes(item.brand)) && item.price >= minPrice && item.price <= maxPrice && `${item.name} ${item.color} ${item.brand} ${item.category}`.toLowerCase().includes(search.trim().toLowerCase())).sort((a, b) => sort === "price-low" ? a.price - b.price : sort === "price-high" ? b.price - a.price : sort === "name" ? a.name.localeCompare(b.name) : 0);
   useEffect(() => {
@@ -48,7 +51,7 @@ export function ShopCollection({ initialSearch }: { initialSearch: string }) {
     <div className="shop-sidebar-note"><span>THE EVERYDAY COLLECTION</span><p>Good pieces.<br />On repeat.</p><small>Considered style, from head to toe.</small></div>
   </>; }
   return <section className="shop-collection">
-    <div className="shop-breadcrumb"><Link href="/">Home</Link><span>/</span><span>Shop</span></div>
+    <nav className="shop-breadcrumb" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span>{breadcrumbName ? <><Link href="/shop" onClick={() => { clearFilters(); setSearch(""); }}>Shop</Link><span aria-hidden="true">/</span><span aria-current="page">{breadcrumbName}</span></> : <span aria-current="page">Shop</span>}</nav>
     <header className="shop-intro"><div><p className="eyebrow">THE EVERYDAY COLLECTION</p><h1>Find your next favourite.</h1><p>Easy layers. Everyday icons. Made to move with you.</p></div><span className="shop-intro-index">01 — THE ESSENTIALS</span></header>
     <div className="shop-collection-layout"><aside className="shop-filter-sidebar" aria-label="Filter products">{filters()}</aside><div className="shop-results">
       <div className="shop-toolbar"><p aria-live="polite"><strong>{filtered.length}</strong> products</p><label className="shop-product-search"><Icon name="search" size={18} /><input type="search" aria-label="Search products" placeholder="Search the collection" value={search} onChange={(event) => setSearch(event.target.value)} /></label><button className="shop-mobile-filter" ref={trigger} aria-haspopup="dialog" onClick={() => setDrawerOpen(true)}><Icon name="menu" size={18} /> Filters {filterCount > 0 && <span>{filterCount}</span>}</button><label className="shop-sort">Sort by<select aria-label="Sort products" value={sort} onChange={(event) => setSort(event.target.value)}><option value="featured">Featured</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="name">Name: A–Z</option></select></label></div>
@@ -81,6 +84,7 @@ function ShopProductCard({ item, eager }: { item: (typeof products)[number]; eag
     </form>
   </article>;
 }
+
 
 
 

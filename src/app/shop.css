@@ -29,3 +29,8 @@
 }
 .shop-product-card.has-back-view>a:focus-visible .shop-product-turn { transform:rotateY(180deg); }
 @media (prefers-reduced-motion:reduce) { .shop-product-turn { transition:none; } }
+
+.shop-breadcrumb { flex-wrap:wrap; align-items:center; line-height:1.7; }
+.shop-breadcrumb [aria-current="page"] { color:#616955; overflow-wrap:anywhere; }
+.shop-breadcrumb a:hover { color:#171917; }
+
