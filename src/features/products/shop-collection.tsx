@@ -8,8 +8,8 @@ import { shoes } from "./catalog";
 import { useCart } from "@/features/cart/cart-provider";
 const categories = ["Hoodies", "Sweatshirts", "T-shirts", "Jackets", "Footwear"];
 const products = [
-  ...heroGarments.map((item, index) => ({ id: `garment-${index}`, name: item.name === "Blazzer" ? "Tailored Blazer" : item.name, color: item.color, price: 199, image: item.front, brand: "Nike", category: ["Jackets", "Hoodies", "Hoodies", "Sweatshirts", "Sweatshirts", "T-shirts"][index], slug: "club-fleece-hoodie", footwear: false })),
-  ...shoes.map((item, index) => ({ ...item, id: item.slug, color: "Everyday performance", brand: index === 0 ? "Jordan" : "Nike", category: "Footwear", footwear: true })),
+  ...heroGarments.map((item, index) => ({ id: `garment-${index}`, name: item.name === "Blazzer" ? "Tailored Blazer" : item.name, color: item.color, price: 199, image: item.front, back: item.back, brand: "Nike", category: ["Jackets", "Hoodies", "Hoodies", "Sweatshirts", "Sweatshirts", "T-shirts"][index], slug: "club-fleece-hoodie", footwear: false })),
+  ...shoes.map((item, index) => ({ ...item, id: item.slug, back: null, color: "Everyday performance", brand: index === 0 ? "Jordan" : "Nike", category: "Footwear", footwear: true })),
 ];
 const brands = [...new Set(products.map((item) => item.brand))];
 const priceLimit = 250;
@@ -62,11 +62,12 @@ export function ShopCollection({ initialSearch }: { initialSearch: string }) {
 
 function ShopProductCard({ item, eager }: { item: (typeof products)[number]; eager: boolean }) {
   const [size, setSize] = useState("");
+  const [backReady, setBackReady] = useState(false);
   const { addItems } = useCart();
   const sizes = item.footwear ? ["40", "41", "42", "43", "44", "45", "46"] : ["XS", "S", "M", "L", "XL"];
-  return <article className="shop-product-card" aria-label={`${item.name}, ${item.color}`}>
+  return <article className={`shop-product-card ${item.back && backReady ? "has-back-view" : ""}`} aria-label={`${item.name}, ${item.color}`}>
     <Link href={`/products/${item.slug}`}>
-      <div className={`shop-product-art ${item.footwear ? "is-footwear" : ""}`}><span className="shop-product-tag">{item.footwear ? "ON THE MOVE" : "ESSENTIAL"}</span><Image src={item.image} alt={`${item.name}, ${item.color}`} width={600} height={700} sizes="(max-width: 600px) 46vw, (max-width: 1000px) 40vw, 25vw" loading={eager ? "eager" : "lazy"} /><span className="shop-card-arrow"><Icon name="arrow" size={20} /></span></div>
+      <div className={`shop-product-art ${item.footwear ? "is-footwear" : ""}`}><span className="shop-product-tag">{item.footwear ? "ON THE MOVE" : "ESSENTIAL"}</span><div className="shop-product-turn"><Image className="shop-image-front" src={item.image} alt={`${item.name}, ${item.color}`} width={600} height={700} sizes="(max-width: 600px) 46vw, (max-width: 1000px) 40vw, 25vw" loading={eager ? "eager" : "lazy"} />{item.back && <Image className="shop-image-back" src={item.back} alt="" aria-hidden="true" width={600} height={700} sizes="(max-width: 600px) 46vw, (max-width: 1000px) 40vw, 25vw" loading={eager ? "eager" : "lazy"} onLoad={() => setBackReady(true)} onError={() => setBackReady(false)} />}</div><span className="shop-card-arrow"><Icon name="arrow" size={20} /></span></div>
       <div className="shop-card-category">{item.brand} · {item.category}</div><div className="shop-card-title"><h2>{item.name}</h2><strong>${item.price.toFixed(2)}</strong></div><p className="shop-card-color">{item.color}</p>
     </Link>
     <form className="shop-card-purchase" onSubmit={(event) => {
@@ -79,3 +80,5 @@ function ShopProductCard({ item, eager }: { item: (typeof products)[number]; eag
     </form>
   </article>;
 }
+
+

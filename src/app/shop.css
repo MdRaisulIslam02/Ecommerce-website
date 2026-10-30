@@ -17,3 +17,15 @@
 .shop-card-purchase button:hover { background:#393939; }
 @media(max-width:760px) { .shop-card-purchase { flex-wrap:wrap; gap:7px; margin-top:12px; } .shop-card-purchase select { width:100%; padding:10px 8px; font-size:11px; } .shop-card-purchase button { width:100%; flex-basis:100%; padding:12px 6px; font-size:11px; gap:7px; } }
 
+
+.shop-product-art { perspective:1100px; }
+.shop-product-turn { position:absolute; inset:0; transform-style:preserve-3d; transform:rotateY(0deg); transition:transform .8s cubic-bezier(.22,.65,.25,1); }
+.shop-product-turn .shop-image-front,.shop-product-turn .shop-image-back { backface-visibility:hidden; -webkit-backface-visibility:hidden; transition:none; pointer-events:none; }
+.shop-product-card .shop-product-turn .shop-image-front { transform:rotateY(0deg); }
+.shop-product-card .shop-product-turn .shop-image-back { transform:rotateY(180deg); }
+.shop-product-tag,.shop-card-arrow { z-index:2; }
+@media (hover:hover) and (pointer:fine) {
+  .shop-product-card.has-back-view:hover .shop-product-turn { transform:rotateY(180deg); }
+}
+.shop-product-card.has-back-view>a:focus-visible .shop-product-turn { transform:rotateY(180deg); }
+@media (prefers-reduced-motion:reduce) { .shop-product-turn { transition:none; } }
